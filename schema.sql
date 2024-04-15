@@ -1,6 +1,6 @@
 create database bugbond;
 
-use penpulse;
+use bugbond;
 
 CREATE TABLE Stores (
     StoreID INT AUTO_INCREMENT PRIMARY KEY,
