@@ -8,3 +8,5 @@ CREATE TABLE Stores (
     Location VARCHAR(255) NOT NULL,
     Contact VARCHAR(255)
 );
+
+show tables;
