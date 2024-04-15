@@ -1,4 +1,4 @@
-create database penpulse;
+create database bugbond;
 
 use penpulse;
 
