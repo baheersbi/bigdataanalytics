@@ -1,4 +1,7 @@
-# Create a table called Stored
+create database penpulse;
+
+use penpulse;
+
 CREATE TABLE Stores (
     StoreID INT AUTO_INCREMENT PRIMARY KEY,
     StoreName VARCHAR(255) NOT NULL,
