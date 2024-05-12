@@ -41,13 +41,20 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
 
 ## Preparing Ubuntu for Hadoop
 
-### 1. Update System Packages
+### 1. Update System Packages and Create user for Hadoop environment
 
 - Make sure your system is up to date:
     ```bash
     apt update -y
     ```
-
+- Install ```adduser```
+   ```bash
+    apt install adduser
+   ```
+- Create user for Hadoop environment
+   ```bash
+    adduser hadoop
+   ```
 ### 2. Install Java
 
 - Java is needed for Hadoop:
