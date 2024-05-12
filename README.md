@@ -55,6 +55,10 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
    ```bash
     adduser hadoop
    ```
+- Add ```hadoop``` user to the ```sudo``` Group:
+  ```bash
+  usermod -aG sudo hadoop
+  ```
 ### 2. Install Java
 
 - Java is needed for Hadoop:
