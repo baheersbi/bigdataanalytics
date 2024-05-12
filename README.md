@@ -58,10 +58,14 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
 ### 2. Install Java
 
 - Java is needed for Hadoop:
-    ```bash
-    apt install default-jre -y
-    ```
-
+    - Java Runtime Environment (JRE)
+        ```bash
+        apt install default-jre -y
+        ```
+    - Java Development Kit (JDK)
+        ```bash
+        apt install default-jdk -y
+        ```
 ### 3. Install `wget`
 
 - `wget` is a tool to download files:
