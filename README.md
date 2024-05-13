@@ -91,9 +91,9 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
     apt install openssh-server openssh-client -y
    ```
 ### 5. Switch to the created user
-    ```bash
-    su - hadoop
-    ```
+   ```bash
+   su - hadoop
+   ```
 ### 6. Generate SSH keys (Public and Private)
     ```bash
     ssh-keygen -t -rsa
