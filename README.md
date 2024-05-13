@@ -80,11 +80,11 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
        ```bash
         java -version
         ```
-### 3. Install `wget` and `nano` editor
+### 3. Install `wget`, `sudo`, and `nano` editor
 
 - `wget` is a tool to download files:
     ```bash
-    apt install wget nano -y
+    apt install wget nano sudo -y
     ```
 ### 4. Install OpenSSH (Server and Client)
    ```bash
