@@ -96,7 +96,7 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
    ```
 ### 6. Generate SSH keys (Public and Private)
   ```bash
-  ssh-keygen -t -rsa
+  ssh-keygen -t rsa
   ```
 ### 7. Add the public key to `authorized_keys`
  ```bash
