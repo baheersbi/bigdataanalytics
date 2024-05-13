@@ -62,65 +62,110 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
 ### 2. Install Java
 
 - Java is needed for Hadoop:
-    - Java Runtime Environment (JRE)
+    - Java Runtime Environment (JRE):
         ```bash
         apt install default-jre -y
         ```
-    - Java Development Kit (JDK)
+    - Java Development Kit (JDK):
         ```bash
         apt install default-jdk -y
         ```
-### 3. Install `wget`
+    - Verify Java Installation:
+       ```bash
+        java -version
+        ```
+### 3. Install `wget` and `nano` editor
 
 - `wget` is a tool to download files:
     ```bash
-    apt install wget -y
+    apt install wget nano -y
     ```
-
+### 4. Install OpenSSH (Server and Client)
+    ```bash
+    apt install openssh-server openssh-client -y
+    ```
+### 5. Switch to the created user
+    ```bash
+    su - hadoop
+    ```
+### 6. Generate SSH keys (Public and Private)
+    ```bash
+    ssh-keygen -t -rsa
+    ```
+### 7. Add the public key to `authorized_keys`
+    ```bash
+    sudo cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+    ```
+### 8. Change the permissions of the `authorized_keys` file
+    ```bash
+    sudo chmod 640 ~/.ssh/authorized_keys
+    ```
+### 9. Verify the Passwordless SSH connection
+     ```bash
+    ssh localhost
+    ```
 ## Hadoop Installation and Configuration
 
 ### 1. Download and Extract Hadoop
 
 - Download Hadoop:
     ```bash
-    wget https://downloads.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
+    wget https://downloads.apache.org/hadoop/common/hadoop-3.3.2/hadoop-3.3.2.tar.gz
     ```
 - Extract the downloaded file:
     ```bash
-    tar -xzvf hadoop-3.3.6.tar.gz
+    tar -xzvf hadoop-3.3.2.tar.gz
     ```
 - Move the extracted folder:
     ```bash
-    mv hadoop-3.3.6 /usr/local/hadoop
+    mv hadoop-3.3.2 /usr/local/hadoop
     ```
-
-### 2. Install `nano` Editor
-
-- Install the text editor `nano` to edit files:
-    ```bash
-    apt install nano -y
+- Configuring Java Environment Variables for Hadoop Setup
+   ```bash
+    dirname $(dirname $(readlink -f $(which java)))
     ```
-
 ### 3. Configure Hadoop
 
 #### Set Up Environment Variables
 
 - Open the `.bashrc` file for editing:
     ```bash
-    nano ~/.bashrc
+    sudo nano ~/.bashrc
     ```
 - Add these lines to the file:
     ```bash
-    export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-arm64
+    export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
     export HADOOP_HOME=/usr/local/hadoop
-    export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+    export HADOOP_INSTALL=$HADOOP_HOME
+    export HADOOP_MAPRED_HOME=$HADOOP_HOME
+    export HADOOP_COMMON_HOME=$HADOOP_HOME
+    export HADOOP_HDFS_HOME=$HADOOP_HOME
+    export YARN_HOME=$HADOOP_HOME
+    export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+    export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+    export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
     ```
 - Save and exit `nano` (Ctrl + O to save, Enter, then Ctrl + X to exit).
 - Load the new settings:
     ```bash
     source ~/.bashrc
     ```
-
+- Edit `hadoop-env.sh` file
+  ```bash
+  sudo nano $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+  ```
+  - Add the following line
+    ```bash
+    export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+    ```
+- Locate the correct Java path
+  ```bash
+    which javac
+  ```
+  - Determine the Path of javac
+    ```bash
+    readlink -f /usr/bin/javac
+    ```
 #### Configure Hadoop Files
 
 - Edit these files in the Hadoop folder:
@@ -129,7 +174,7 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
 
 - Open this file:
     ```bash
-    nano $HADOOP_HOME/etc/hadoop/core-site.xml
+    sudo nano $HADOOP_HOME/etc/hadoop/core-site.xml
     ```
 - Add the following configuration:
     ```xml
@@ -151,7 +196,7 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
 
 - Open the file:
     ```bash
-    nano $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+    sudo nano $HADOOP_HOME/etc/hadoop/hdfs-site.xml
     ```
 - Add this content:
     ```xml
@@ -176,7 +221,7 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
 
 - Open the file:
     ```bash
-    nano $HADOOP_HOME/etc/hadoop/mapred-site.xml
+    sudo nano $HADOOP_HOME/etc/hadoop/mapred-site.xml
     ```
 - Add this:
     ```xml
@@ -193,7 +238,7 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
 
 - Open this file:
     ```bash
-    nano $HADOOP_HOME/etc/hadoop/yarn-site.xml
+    sudo nano $HADOOP_HOME/etc/hadoop/yarn-site.xml
     ```
 - Add the following:
     ```xml
@@ -214,93 +259,29 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
     ```
 - Save and exit.
 
-## Configuring SSH for Hadoop
-
-Hadoop needs SSH to manage data.
-
-### 1. Install SSH Server
-
-- Install OpenSSH server:
-    ```bash
-    apt-get update && apt-get install -y openssh-server
-    ```
-
-### 2. Set Up SSH Keys
-
-- Generate SSH keys:
-    ```bash
-    ssh-keygen -t dsa -P '' -f ~/.ssh/id_rsa
-    ```
-- Add the public key to authorized keys:
-    ```bash
-    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-    ```
-- Set correct permissions:
-    ```bash
-    chmod 700 ~/.ssh
-    chmod 600 ~/.ssh/authorized_keys
-    ```
-
-### 3. Update SSH Configuration
-
-- Open the SSH config file:
-    ```bash
-    nano /etc/ssh/sshd_config
-    ```
-- Ensure these options are enabled:
-    ```bash
-    PasswordAuthentication yes
-    PermitRootLogin yes
-    ```
-- Save and restart SSH:
-    ```bash
-    service ssh restart
-    ```
-
-### 4. Test SSH Access
-
-- Try to connect locally:
-    ```bash
-    ssh localhost
-    ```
-- To exit, type `exit`.
-
 ## Starting Hadoop Services
 
-### Define More Environment Variables
-
-- Add these variables to `.bashrc`:
-    ```bash
-    export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-arm64
-    export PATH=$PATH:/usr/lib/jvm/java-11-openjdk-arm64/bin
-    export HADOOP_HOME=/usr/local/hadoop
-    export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
-    export HADOOP_MAPRED_HOME=$HADOOP_HOME
-    export YARN_HOME=$HADOOP_HOME
-    export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
-    export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-    export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
-    export HADOOP_STREAMING=$HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar
-    export HADOOP_LOG_DIR=$HADOOP_HOME/logs
-    export PDSH_RCMD_TYPE=ssh
-
-    export HDFS_NAMENODE_USER=root
-    export HDFS_DATANODE_USER=root
-    export HDFS_SECONDARYNAMENODE_USER=root
-    export YARN_RESOURCEMANAGER_USER=root
-    export YARN_NODEMANAGER_USER=root
-    ```
-- Apply these changes:
-    ```bash
-    source ~/.bashrc
-    ```
-
-### Starting Hadoop Services
-
+- Format HDFS NamdeNode
+  ```bash
+  hdfs namenode -format
+  ```
 - Start Hadoop services:
     ```bash
     start-all.sh
     ```
+- Or start each service separately:
+  - Start Hadoop Cluster
+    ```bash
+    start-dfs.sh
+    ```
+  - Start the YARN
+    ```bash
+    start-yarn.sh
+    ```
+- Verify all the running components
+  ```bash
+    jps
+  ```
 - Create directories and upload a file:
     ```bash
     hadoop fs -mkdir /fbi-simulation
