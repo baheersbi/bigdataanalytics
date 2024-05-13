@@ -164,9 +164,11 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
   ```bash
   sudo nano $HADOOP_HOME/etc/hadoop/hadoop-env.sh
   ```
-  - Add the following line
+  - Add the following lines
     ```bash
     export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-arm64
+    export HADOOP_HOME_WARN_SUPPRESS=1
+    export HADOOP_ROOT_LOGGER="WARN,DRFA"
     ```
 - Save and exit `nano` (Ctrl + O to save, Enter, then Ctrl + X to exit).
 - Locate the correct Java path
