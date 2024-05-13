@@ -166,7 +166,7 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
   ```
   - Add the following line
     ```bash
-    export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+    export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-arm64
     ```
 - Locate the correct Java path
   ```bash
