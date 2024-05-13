@@ -128,7 +128,7 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
     ```
 - Move the extracted folder:
     ```bash
-    mv hadoop-3.3.6 /usr/local/hadoop
+    sudo mv hadoop-3.3.6 /usr/local/hadoop
     ```
 - Configuring Java Environment Variables for Hadoop Setup
    ```bash
