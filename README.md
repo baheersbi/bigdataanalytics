@@ -106,7 +106,11 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
  ```bash
  sudo chmod 640 ~/.ssh/authorized_keys
  ```
-### 9. Verify the Passwordless SSH connection
+### 9. Restart SSH service
+ ```bash
+ sudo service ssh restart
+ ```
+### 10. Verify the Passwordless SSH connection
  ```bash
  ssh localhost
  ```
