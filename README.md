@@ -81,9 +81,9 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
     apt install wget nano -y
     ```
 ### 4. Install OpenSSH (Server and Client)
-    ```bash
+   ```bash
     apt install openssh-server openssh-client -y
-    ```
+   ```
 ### 5. Switch to the created user
     ```bash
     su - hadoop
