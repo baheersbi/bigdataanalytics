@@ -18,6 +18,7 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
     - Create a new directory: `mkdir hadoop`
     - Change your directory: `cd hadoop`
     - Create the Dockerfile: `echo $null >> Dockerfile`
+    - Edit the Dockerfile: bash -c "nano Dockerfile"
 - Copy this code into the `Dockerfile`:
     ```Dockerfile
     FROM ubuntu
