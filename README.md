@@ -168,6 +168,7 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
     ```bash
     export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-arm64
     ```
+- Save and exit `nano` (Ctrl + O to save, Enter, then Ctrl + X to exit).
 - Locate the correct Java path
   ```bash
     which javac
