@@ -144,7 +144,7 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
     ```
 - Add these lines to the file:
     ```bash
-    export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+    export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-arm64
     export HADOOP_HOME=/usr/local/hadoop
     export HADOOP_INSTALL=$HADOOP_HOME
     export HADOOP_MAPRED_HOME=$HADOOP_HOME
