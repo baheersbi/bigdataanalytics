@@ -120,15 +120,15 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
 
 - Download Hadoop:
     ```bash
-    wget https://downloads.apache.org/hadoop/common/hadoop-3.3.2/hadoop-3.3.2.tar.gz
+    wget https://downloads.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
     ```
 - Extract the downloaded file:
     ```bash
-    tar -xzvf hadoop-3.3.2.tar.gz
+    tar -xzvf hadoop-3.3.6.tar.gz
     ```
 - Move the extracted folder:
     ```bash
-    mv hadoop-3.3.2 /usr/local/hadoop
+    mv hadoop-3.3.6 /usr/local/hadoop
     ```
 - Configuring Java Environment Variables for Hadoop Setup
    ```bash
