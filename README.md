@@ -95,21 +95,21 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
    su - hadoop
    ```
 ### 6. Generate SSH keys (Public and Private)
-    ```bash
-    ssh-keygen -t -rsa
-    ```
+  ```bash
+  ssh-keygen -t -rsa
+  ```
 ### 7. Add the public key to `authorized_keys`
-    ```bash
-    sudo cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-    ```
+ ```bash
+ sudo cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+ ```
 ### 8. Change the permissions of the `authorized_keys` file
-    ```bash
-    sudo chmod 640 ~/.ssh/authorized_keys
-    ```
+ ```bash
+ sudo chmod 640 ~/.ssh/authorized_keys
+ ```
 ### 9. Verify the Passwordless SSH connection
-     ```bash
-    ssh localhost
-    ```
+ ```bash
+ ssh localhost
+ ```
 ## Hadoop Installation and Configuration
 
 ### 1. Download and Extract Hadoop
