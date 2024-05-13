@@ -13,6 +13,11 @@ Docker lets you create virtual environments called "containers" to run software.
 A `Dockerfile` is like a recipe that tells Docker how to create the environment.
 
 - Create a new file named `Dockerfile` (without any file extension).
+  - Windows users:
+    - Open PowerShell
+    - Create a new directory: `mkdir hadoop`
+    - Change your directory: `cd hadoop`
+    - Create the Dockerfile: `echo $null >> Dockerfile`
 - Copy this code into the `Dockerfile`:
     ```Dockerfile
     FROM ubuntu
