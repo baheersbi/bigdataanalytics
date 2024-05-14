@@ -40,7 +40,7 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
 
 - Create and start the container:
     ```bash
-    docker run -it -p 9870:9870 bubuntu
+    docker run -it --name hadoop-container -p 9870:9870 -p 9864:9864 -p 8088:8088 -p 8042:8042 -p 19888:19888 -p 10020:10020 bubuntu
     ```
   - `-it`: Makes the terminal interactive.
   - `-p`: Connects the port of your computer to the container.
@@ -68,13 +68,9 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
 ### 2. Install Java
 
 - Java is needed for Hadoop:
-    - Java Runtime Environment (JRE):
-        ```bash
-        apt install default-jre -y
-        ```
     - Java Development Kit (JDK):
         ```bash
-        apt install default-jdk -y
+        apt install openjdk-8-jdk -y
         ```
     - Verify Java Installation:
        ```bash
@@ -120,20 +116,28 @@ A `Dockerfile` is like a recipe that tells Docker how to create the environment.
 
 - Download Hadoop:
     ```bash
-    wget https://downloads.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
+    wget https://downloads.apache.org/hadoop/common/hadoop-3.4.0/hadoop-3.4.0.tar.gz
     ```
 - Extract the downloaded file:
     ```bash
-    tar -xzvf hadoop-3.3.6.tar.gz
+    tar -xzvf hadoop-3.4.0.tar.gz
     ```
 - Move the extracted folder:
     ```bash
-    sudo mv hadoop-3.3.6 /usr/local/hadoop
+    sudo mv hadoop-3.4.0 /usr/local/hadoop
     ```
 - Configuring Java Environment Variables for Hadoop Setup
    ```bash
     dirname $(dirname $(readlink -f $(which java)))
     ```
+- Create a directory to store logs
+  ```bash
+  sudo mkdir /usr/local/hadoop/logs
+  ```
+- Change the ownership of the `/usr/local/hadoop` to the user `hadoop`:
+  ```bash
+  sudo chown -R hadoop:hadoop /usr/local/hadoop
+  ```
 ### 3. Configure Hadoop
 
 #### Set Up Environment Variables
