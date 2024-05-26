@@ -9,7 +9,17 @@
    ```bash
      docker run -it -p 50070:50070 -p 8088:8088 -p 8080:8080 suhothayan/hadoop-spark-pig-hive bash
    ```
-7. 
+7. Pig
+   ```pig
+   cat <<EOF > /root/user_analysis.pig
+   users = LOAD 'hdfs:///user/root/input/users.csv' USING PigStorage(',') AS (id:int, name:chararray, age:int, gender:chararray);
+   users_above_25 = FILTER users BY age > 25;
+   grouped_by_gender = GROUP users_above_25 BY gender;
+   count_by_gender = FOREACH grouped_by_gender GENERATE group AS gender, COUNT(users_above_25) AS count;
+   STORE count_by_gender INTO 'hdfs:///user/root/output' USING PigStorage(',');
+   EOF
+   ```
+9. 
 
 # A detailed approach 
 > The objective of this approach is to teach students some basic Linux commands, as well as Hadoop installation. 
