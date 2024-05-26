@@ -1,7 +1,18 @@
 # Big Data Analytics
 ## Hadoop Installation
+# Easy approach:
+1. Open Docker
+2. Search for ```suhothayan/hadoop-spark-pig-hive``` image
+3. ```Pull``` the image
+4. Open a Command Prompt or Terminal
+5. Execute this Docker command:
+   ```bash
+  docker run -it -p 50070:50070 -p 8088:8088 -p 8080:8080 suhothayan/hadoop-spark-pig-hive bash
+   ```
+7. 
 
-# Setting Up Ubuntu Docker Image with Hadoop 
+# A detailed approach 
+> The objective of this approach is to teach students some basic Linux commands, as well as Hadoop installation. 
 
 This guide will help you step-by-step in building a custom Ubuntu Docker image, setting up Hadoop for data processing.
 
