@@ -7,7 +7,7 @@
 4. Open a Command Prompt or Terminal
 5. Execute this Docker command:
    ```bash
-  docker run -it -p 50070:50070 -p 8088:8088 -p 8080:8080 suhothayan/hadoop-spark-pig-hive bash
+     docker run -it -p 50070:50070 -p 8088:8088 -p 8080:8080 suhothayan/hadoop-spark-pig-hive bash
    ```
 7. 
 
