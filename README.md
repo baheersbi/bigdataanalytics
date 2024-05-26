@@ -12,14 +12,27 @@
 7. Pig
    ```pig
    cat <<EOF > /root/user_analysis.pig
-   users = LOAD 'hdfs:///user/root/input/users.csv' USING PigStorage(',') AS (id:int, name:chararray, age:int, gender:chararray);
+   users = LOAD 'hdfs:///home/datasrc/bigDataTask/users.csv' USING PigStorage(',') AS (id:int, name:chararray, age:int, gender:chararray);
    users_above_25 = FILTER users BY age > 25;
    grouped_by_gender = GROUP users_above_25 BY gender;
    count_by_gender = FOREACH grouped_by_gender GENERATE group AS gender, COUNT(users_above_25) AS count;
-   STORE count_by_gender INTO 'hdfs:///user/root/output' USING PigStorage(',');
+   STORE count_by_gender INTO 'hdfs:///home/datasrc/output' USING PigStorage(',');
    EOF
    ```
-9. 
+9. Using Pig Prompt (```grunt>```)
+grunt> reviews = LOAD 'hdfs:///home/datasrc/bigDataTask/Books_rating.csv' USING PigStorage(',') AS (
+    reviewerID:chararray,
+    asin:chararray,
+    reviewerName:chararray,
+    helpful:chararray,
+    reviewText:chararray,
+    overall:int,
+    summary:chararray,
+    unixReviewTime:long,
+    reviewTime:chararray
+);
+
+11. 
 
 # A detailed approach 
 > The objective of this approach is to teach students some basic Linux commands, as well as Hadoop installation. 
