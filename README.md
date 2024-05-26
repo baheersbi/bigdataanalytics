@@ -9,6 +9,7 @@
    ```bash
      docker run -it -p 50070:50070 -p 8088:8088 -p 8080:8080 suhothayan/hadoop-spark-pig-hive bash
    ```
+> Remove a directory in HDFS: ```hdfs dfs -rm -r /user/root/test```
 7. Pig
    ```pig
    cat <<EOF > /root/user_analysis.pig
