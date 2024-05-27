@@ -50,27 +50,29 @@
    > docker exec -it myhadoop bash
    > ```
    To access Hadoop Web Interface, Open a browser window/tab and navigate to ```http://localhost:50070```, and Spark at ```http://localhost:8080``` 
-6. Navigate to the ```home``` directory: ```cd home``` and press Enter
-7. Create a new directory: ```mkdir datasrc```
-8. Download this [Amazon Books Reviews](https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews/data) dataset to your computer.
-9. Unzip the extracted folder
-10. Open a new Command Prompot or Terminal window and copy the downloaded file to the container. The container ID looks like ```3d6c17a05e33``` extracted from ```root@3d6c17a05e33:~#``` prompt.
+6. Update Ubuntu: ```apt update```
+7. Install ```nano`` editor: ```apt install nano```
+8. . Navigate to the ```home``` directory: ```cd home``` and press Enter
+9. Create a new directory: ```mkdir datasrc```
+10. Download this [Amazon Books Reviews](https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews/data) dataset to your computer.
+11. Unzip the extracted folder
+12. Open a new Command Prompot or Terminal window and copy the downloaded file to the container. The container ID looks like ```3d6c17a05e33``` extracted from ```root@3d6c17a05e33:~#``` prompt.
       ```bash
       docker cp Books_rating.csv 3d6c17a05e33:/home/datasrc 
       ```
-11. Create a directory in HDFS:
+13. Create a directory in HDFS:
       ```bash
       hadoop fs -mkdir -p /home/datasrc/bigDataTask
       ```
-12. Upload the file to HDFS:
+14. Upload the file to HDFS:
       ```bash
       hadoop fs -put Book_rating.csv /home/datasrc/bigDataTask
       ```
-13. Make sure the file is uploaded
+15. Make sure the file is uploaded
       ```bash
       hadoop fs -ls /home/datasrc/bigDataTask
       ```
-14. See the number of blocks
+16. See the number of blocks
       ```bash
       hadoop fsck /home/datasrc/bigDataTask
       ```
