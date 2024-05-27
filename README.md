@@ -66,7 +66,7 @@
       ```
 14. Upload the file to HDFS:
       ```bash
-      hadoop fs -put Book_rating.csv /home/datasrc/bigDataTask
+      hadoop fs -put Books_rating.csv /home/datasrc/bigDataTask
       ```
 15. Make sure the file is uploaded
       ```bash
