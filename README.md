@@ -177,7 +177,7 @@
     hdfs dfs -put /home/datasrc/bigDataTask/users.csv /home/datasrc/bigDataTask/users.csv
 
     ```
-    15.3. Create a pig file ```touch user_analysis.pig
+    15.3. Create a pig file ```touch user_analysis.pig```
     ```bash
     users = LOAD 'hdfs:///home/datasrc/bigDataTask/users.csv' USING PigStorage(',') AS (id:int, name:chararray, age:int, gender:chararray);
     users_above_25 = FILTER users BY age > 25;
