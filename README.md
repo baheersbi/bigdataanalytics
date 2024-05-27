@@ -10,6 +10,40 @@
    docker run -it --name myhadoop -p 2122:2122 -p 50070:50070 -p 50010:50010 -p 50075:50075 -p 50020:50020 -p 50090:50090 -p 8088:8088 -p 8030:8030 -p 8031:8031 -p 8032:8032 -p 8033:8033 -p 8040:8040 -p 8042:8042 -p 8080:8080 -p 8081:8081 -p 10000:10000 suhothayan/hadoop-spark-pig-hive:2.9.2 bash
 
    ```
+   > **Port Number Explained**
+   >
+   > 2122:2122 \   # SSH
+   > 
+   > 50070:50070 \ # HDFS NameNode
+   > 
+   > 50010:50010 \ # HDFS DataNode
+   > 
+   > 50075:50075 \ # HDFS DataNode
+   > 
+   > 50020:50020 \ # SecondaryNameNode
+   > 
+   > 50090:50090 \ # HDFS DataNode Secure
+   > 
+   > 8088:8088 \   # YARN ResourceManager
+   > 
+   > 8030:8030 \   # YARN ResourceManager Scheduler
+   > 
+   > 8031:8031 \   # YARN ResourceManager Scheduler
+   > 
+   > 8032:8032 \   # YARN ResourceManager Scheduler
+   > 
+   > 8033:8033 \   # YARN ResourceManager Scheduler
+   > 
+   > 8040:8040 \   # YARN NodeManager
+   > 
+   > 8042:8042 \   # YARN NodeManager Web UI
+   > 
+   > 8080:8080 \   # Spark Master Web UI
+   > 
+   > 8081:8081 \   # Spark Worker Web UI
+   > 
+   > 10000:10000 \ # HiveServer2
+   > 
    > **Note:** Use the below command if you exit Hadoop container and wanna re-run the created container and get access to your previous work:
    >
    > ```bash
