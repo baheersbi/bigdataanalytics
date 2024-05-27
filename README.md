@@ -184,7 +184,7 @@
     ```
 4. Run the pig script: ```pig /root/user_analysis.pig```
 5. List the output directory: ```hdfs dfs -ls /home/datasrc/bigDataTask/output```
-6. Read the output file: ```hdfs dfs -cat /user/root/output/part-r-00000```
+6. Read the output file: ```hdfs dfs -cat /home/datasrc/bigDataTask/output/part-r-00000```
 
 
 # A detailed approach 
