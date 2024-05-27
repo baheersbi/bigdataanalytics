@@ -7,10 +7,113 @@
 4. Open a Command Prompt or Terminal
 5. Execute this Docker command:
    ```bash
-     docker run -it -p 50070:50070 -p 8088:8088 -p 8080:8080 suhothayan/hadoop-spark-pig-hive bash
+     docker run -it --name myhadoop \
+     -p 2122:2122 \    # SSH
+     -p 50070:50070 \  # HDFS NameNode
+     -p 50010:50010 \  # HDFS DataNode
+     -p 50075:50075 \  # HDFS DataNode
+     -p 50020:50020 \  # HDFS DataNode
+     -p 50090:50090 \  # HDFS DataNode
+     -p 8088:8088 \    # YARN ResourceManager
+     -p 8030:8030 \    # YARN ResourceManager scheduler
+     -p 8031:8031 \    # YARN ResourceManager scheduler
+     -p 8032:8032 \    # YARN ResourceManager scheduler
+     -p 8033:8033 \    # YARN ResourceManager scheduler
+     -p 8040:8040 \    # YARN NodeManager
+     -p 8042:8042 \    # YARN NodeManager
+     -p 8080:8080 \    # Spark Master
+     -p 8081:8081 \    # Spark Worker
+     -p 10000:10000 \  # HiveServer2
+     suhothayan/hadoop-spark-pig-hive bash
+
    ```
+   > **Note:** Use the below command if you exit Hadoop container and wanna re-run the created container and get access to your previous work:
+   >
+   > ```bash
+   > docker exec -it myhadoop bash
+   > ```
+   To access Hadoop Web Interface, Open a browser window/tab and navigate to ```http://localhost:50070```, and Spark at ```http://localhost:8080``` 
+6. Navigate to the ```home``` directory: ```cd home``` and press Enter
+7. Create a new directory: ```mkdir datasrc```
+8. Download this [Amazon Books Reviews](https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews/data) dataset to your computer.
+9. Unzip the extracted folder
+10. Open a new Command Prompot or Terminal window and copy the downloaded file to the container. The container ID looks like ```3d6c17a05e33``` extracted from ```root@3d6c17a05e33:~#``` prompt.
+      ```bash
+      docker cp Books_rating.csv 3d6c17a05e33:/home/datasrc 
+      ```
+11. Create a directory in HDFS:
+      ```bash
+      hadoop fs -mkdir -p /home/datasrc/bigDataTask
+      ```
+12. Upload the file to HDFS:
+      ```bash
+      hadoop fs -put Book_rating.csv /home/datasrc/bigDataTask
+      ```
+13. Make sure the file is uploaded
+      ```bash
+      hadoop fs -ls /home/datasrc/bigDataTask
+      ```
+14. See the number of blocks
+      ```bash
+      hadoop fsck /home/datasrc/bigDataTask
+      ```
+> ***Note***
+> 
+> Create a directory in HDFS: ```hdfs dfs -mkdir -p /user/root/test```
+> 
 > Remove a directory in HDFS: ```hdfs dfs -rm -r /user/root/test```
-7. Pig
+> 
+> List files/folders in HDFS: ```hdfs dfs -ls /user/root```
+## Load data from HDFS to Hive
+   1. Print the column names from the ```Book_rating.csv```
+         ```bash
+         hdfs dfs -cat /home/datasrc/bigDataTask/Books_rating.csv | head -n 1
+         ```
+   2. Switch to ```hive```
+         ```bash
+         hive
+         ```
+   3. Show the current Databases ```show databases``` and it will return an error. Leave the ```hive``` prompt by typing ```exit;```
+   4. Remove the ```metastore_db``` folder: ```rm -rf metastore_db```
+   5. Initialize the database schema for Apache Hive
+         ```bash
+         schematool -dbType derby -initSchema
+         ```
+   6. Switch back to ```hive```
+   7. List databases and it won't return any error: ```show databases;```
+   8. Create a new database ```create database amazonDB;```
+   9. Use the new database ```use amazonDB;```
+   10. Define the Hive Table Schema
+         ```sql
+         CREATE TABLE books_rating (
+         Id STRING,
+         Title STRING,
+         Price STRING,
+         User_id STRING,
+         profileName STRING,
+         review_helpfulness STRING,
+         review_score FLOAT,
+         review_time BIGINT,
+         review_summary STRING,
+         review_text STRING
+         )
+         ROW FORMAT DELIMITED
+         FIELDS TERMINATED BY ','
+         LINES TERMINATED BY '\n'
+         TBLPROPERTIES ('skip.header.line.count'='1');
+
+         ```
+   11. Load Data into the Hive Table
+         ```sql
+         LOAD DATA INPATH '/home/datasrc/bigDataTask/Books_rating.csv' INTO TABLE books_rating;
+         ```
+   12. Verify the data
+         ```sql
+         SELECT * FROM books_rating LIMIT 10;
+         ```
+   13.   
+
+14. Pig
    ```pig
    cat <<EOF > /root/user_analysis.pig
    users = LOAD 'hdfs:///home/datasrc/bigDataTask/users.csv' USING PigStorage(',') AS (id:int, name:chararray, age:int, gender:chararray);
@@ -20,7 +123,7 @@
    STORE count_by_gender INTO 'hdfs:///home/datasrc/output' USING PigStorage(',');
    EOF
    ```
-9. Using Pig Prompt (```grunt>```)
+11. Using Pig Prompt (```grunt>```)
 grunt> reviews = LOAD 'hdfs:///home/datasrc/bigDataTask/Books_rating.csv' USING PigStorage(',') AS (
     reviewerID:chararray,
     asin:chararray,
@@ -33,7 +136,7 @@ grunt> reviews = LOAD 'hdfs:///home/datasrc/bigDataTask/Books_rating.csv' USING 
     reviewTime:chararray
 );
 
-11. 
+12. 
 
 # A detailed approach 
 > The objective of this approach is to teach students some basic Linux commands, as well as Hadoop installation. 
