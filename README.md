@@ -160,11 +160,8 @@
          GROUP BY User_id;
 
          ```
-   14.   
-
 ## Pig
-    
-    15.1. Create a new CSV file
+1. Create a new CSV file
     ```sql
     id,name,age,gender
     1,John,28,M
@@ -172,12 +169,12 @@
     3,Bob,35,M
     4,Carol,28,F
     ```
-    15.2. Upload it to HDFS
+2. Upload it to HDFS
     ```bash
     hdfs dfs -put /home/datasrc/bigDataTask/users.csv /home/datasrc/bigDataTask/users.csv
 
     ```
-    15.3. Create a pig file ```touch user_analysis.pig```
+3. Create a pig file ```touch user_analysis.pig```
     ```bash
     users = LOAD 'hdfs:///home/datasrc/bigDataTask/users.csv' USING PigStorage(',') AS (id:int, name:chararray, age:int, gender:chararray);
     users_above_25 = FILTER users BY age > 25;
@@ -185,9 +182,9 @@
     count_by_gender = FOREACH grouped_by_gender GENERATE group AS gender, COUNT(users_above_25) AS count;
     STORE count_by_gender INTO 'hdfs:///home/datasrc/bigDataTask/output' USING PigStorage(',');
     ```
-   15.4. Run the pig script: ```pig /root/user_analysis.pig```
-   15.5. List the output directory: ```hdfs dfs -ls /home/datasrc/bigDataTask/output```
-   15.6. Read the output file: ```hdfs dfs -cat /user/root/output/part-r-00000```
+4. Run the pig script: ```pig /root/user_analysis.pig```
+5. List the output directory: ```hdfs dfs -ls /home/datasrc/bigDataTask/output```
+6. Read the output file: ```hdfs dfs -cat /user/root/output/part-r-00000```
 
 
 # A detailed approach 
