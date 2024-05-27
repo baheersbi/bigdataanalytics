@@ -163,28 +163,32 @@
    14.   
 
 15. Pig
-   ```pig
-   cat <<EOF > /root/user_analysis.pig
-   users = LOAD 'hdfs:///home/datasrc/bigDataTask/users.csv' USING PigStorage(',') AS (id:int, name:chararray, age:int, gender:chararray);
-   users_above_25 = FILTER users BY age > 25;
-   grouped_by_gender = GROUP users_above_25 BY gender;
-   count_by_gender = FOREACH grouped_by_gender GENERATE group AS gender, COUNT(users_above_25) AS count;
-   STORE count_by_gender INTO 'hdfs:///home/datasrc/output' USING PigStorage(',');
-   EOF
-   ```
-11. Using Pig Prompt (```grunt>```)
-grunt> reviews = LOAD 'hdfs:///home/datasrc/bigDataTask/Books_rating.csv' USING PigStorage(',') AS (
-    reviewerID:chararray,
-    asin:chararray,
-    reviewerName:chararray,
-    helpful:chararray,
-    reviewText:chararray,
-    overall:int,
-    summary:chararray,
-    unixReviewTime:long,
-    reviewTime:chararray
-);
+    
+    15.1. Create a new CSV file
+    ```sql
+    id,name,age,gender
+    1,John,28,M
+    2,Alice,24,F
+    3,Bob,35,M
+    4,Carol,28,F
+    ```
+    15.2. Upload it to HDFS
+    ```bash
+    hdfs dfs -put /home/datasrc/bigDataTask/users.csv /home/datasrc/bigDataTask/users.csv
 
+    ```
+    15.3. Create a pig file ```touch user_analysis.pig
+    ```bash
+    users = LOAD 'hdfs:///home/datasrc/bigDataTask/users.csv' USING PigStorage(',') AS (id:int, name:chararray, age:int, gender:chararray);
+    users_above_25 = FILTER users BY age > 25;
+    grouped_by_gender = GROUP users_above_25 BY gender;
+    count_by_gender = FOREACH grouped_by_gender GENERATE group AS gender, COUNT(users_above_25) AS count;
+    STORE count_by_gender INTO 'hdfs:///home/datasrc/bigDataTask/output' USING PigStorage(',');
+    ```
+   15.4. Run the pig script: ```pig /root/user_analysis.pig```
+   15.5. List the output directory: ```hdfs dfs -ls /home/datasrc/bigDataTask/output```
+   15.6. Read the output file: ```hdfs dfs -cat /user/root/output/part-r-00000```
+   
 12. 
 
 # A detailed approach 
