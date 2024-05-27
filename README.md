@@ -188,8 +188,7 @@
    15.4. Run the pig script: ```pig /root/user_analysis.pig```
    15.5. List the output directory: ```hdfs dfs -ls /home/datasrc/bigDataTask/output```
    15.6. Read the output file: ```hdfs dfs -cat /user/root/output/part-r-00000```
-   
-12. 
+
 
 # A detailed approach 
 > The objective of this approach is to teach students some basic Linux commands, as well as Hadoop installation. 
