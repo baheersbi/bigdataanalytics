@@ -50,8 +50,8 @@
    > docker exec -it myhadoop bash
    > ```
    To access Hadoop Web Interface, Open a browser window/tab and navigate to ```http://localhost:50070```, and Spark at ```http://localhost:8080``` 
-6. Update Ubuntu: ```apt update```
-7. Install ```nano`` editor: ```apt install nano```
+6. Update Ubuntu: ``` apt update ```
+7. Install ``` nano ``` editor: ``` apt install nano ```
 8. . Navigate to the ```home``` directory: ```cd home``` and press Enter
 9. Create a new directory: ```mkdir datasrc```
 10. Download this [Amazon Books Reviews](https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews/data) dataset to your computer.
