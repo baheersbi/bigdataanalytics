@@ -130,9 +130,39 @@
          ```sql
          SELECT * FROM books_rating LIMIT 10;
          ```
-   13.   
+   13. Some useful queries:
+         ```sql
+         SELECT Id, Title, Price, review_score FROM books_rating;
+         
+         SELECT COUNT(*) FROM books_rating;
 
-14. Pig
+         #  Calculate the average review score
+         SELECT AVG(review_score) AS avg_review_score FROM books_rating;
+
+         # Find the highest and lowest review scores
+         SELECT 
+         MAX(review_score) AS max_review_score,
+         MIN(review_score) AS min_review_score 
+         FROM books_rating;
+
+         # Group by Title and calculate the average review score for each book
+         SELECT 
+         Title, 
+         AVG(review_score) AS avg_review_score 
+         FROM books_rating 
+         GROUP BY Title;
+
+         # Count the number of reviews for each user
+         SELECT 
+         User_id, 
+         COUNT(*) AS review_count 
+         FROM books_rating 
+         GROUP BY User_id;
+
+         ```
+   14.   
+
+15. Pig
    ```pig
    cat <<EOF > /root/user_analysis.pig
    users = LOAD 'hdfs:///home/datasrc/bigDataTask/users.csv' USING PigStorage(',') AS (id:int, name:chararray, age:int, gender:chararray);
