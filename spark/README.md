@@ -17,13 +17,12 @@
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /__ / .__/\_,_/_/ /_/\_\   version 3.2.0
+   /__ / .__/\_,_/_/ /_/\_\   version 3.5.1
       /_/
 
-    Using Python version 3.8.12 (default, Oct 12 2021 05:06:12)
-    Spark context Web UI available at http://192.168.1.10:4040
-    Spark context available as 'sc' (master = local[*], app id = local-1643040323444)
-    SparkSession available as 'spark'
-
+    Using Python version 3.11.6 (v3.11.6:8b6ee5ba3b, Oct  2 2023 11:18:21)
+    Spark context Web UI available at http://172.20.10.4:4040
+    Spark context available as 'sc' (master = local[*], app id = local-1717365160333).
+    SparkSession available as 'spark'.      
     >>>
     ```
