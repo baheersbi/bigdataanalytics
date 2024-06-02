@@ -25,4 +25,5 @@
     Spark context available as 'sc' (master = local[*], app id = local-1643040323444)
     SparkSession available as 'spark'
 
+    >>>
     ```
