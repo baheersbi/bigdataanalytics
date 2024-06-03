@@ -105,9 +105,6 @@
 
 ### Extended Spark Streaming Application:
 
-    
-    ```python
-    
     from pyspark import SparkContext
     from pyspark.streaming import StreamingContext
     from pyspark.sql import SQLContext
@@ -167,5 +164,3 @@
 
     ssc.start()
     ssc.awaitTermination()
-
-    ```
