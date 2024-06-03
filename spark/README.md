@@ -22,15 +22,16 @@
     3. Under ```System variables``` section, click the ```New``` button. in the New System Variable dialog, enter the following:
     
         3.1. Variable name: ```PYSPARK_PYTHON```
+       
         3.2. Variable value: ```C:\Users\Username\anaconda3\python.exe``` (replace with your actual Anaconda3 installation path)
 
-    4. Similarly, click on “```New…```” under the System variables section. In the New System Variable dialog, enter the following:
+    5. Similarly, click on “```New…```” under the System variables section. In the New System Variable dialog, enter the following:
 
         4.1. Variable name: ```PYSPARK_DRIVER_PYTHON```
         
         4.2. Variable value: ```C:\Users\Username\anaconda3\python.exe``` (replace with your actual Anaconda3 installation path)
 
-    5. Close the Anaconda prompt and reopen it. Type ```pyspark```, wait for 5 seconds, and click "```Allow```" on the Java pop-up message.
+    6. Close the Anaconda prompt and reopen it. Type ```pyspark```, wait for 5 seconds, and click "```Allow```" on the Java pop-up message.
 5. The PySpark interactive shell will look something like this: 
     ```bash
     Welcome to
