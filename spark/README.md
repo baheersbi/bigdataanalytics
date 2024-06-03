@@ -11,6 +11,20 @@
     ```bash
     pyspark
     ```
+    > ### Windows troubleshooting
+    > After installing PySpark, if you encounter the error message ```"The system cannot find the path specified,"``` follow the steps below:
+    1. Verify that PySpark is installed correctly by typing the following command in Anaconda prompt:
+        ```bash
+        pip show pyspark
+        ```
+    2. Open Windows search and type ```Environment Variables``` go to the ```Advanced``` tab and click on ```Environment Variables```
+    3. Under ```System variables``` section, click the ```New``` button. in the New System Variable dialog, enter the following:
+        2.1. Variable name: ```PYSPARK_PYTHON```
+        2.2. Variable value: ```C:\Users\Username\anaconda3\python.exe``` (replace with your actual Anaconda3 installation path)
+    4. Similarly, click on “```New…```” under the System variables section. In the New System Variable dialog, enter the following:
+        4.1. Variable name: ```PYSPARK_DRIVER_PYTHON```
+        4.2. Variable value: ```C:\Users\Username\anaconda3\python.exe``` (replace with your actual Anaconda3 installation path)
+    5. Close the Anaconda prompt and reopen it. Type ```pyspark```, wait for 5 seconds, and click "```Allow```" on the Java pop-up message.
 5. The PySpark interactive shell will look something like this: 
     ```bash
     Welcome to
