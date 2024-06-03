@@ -31,6 +31,17 @@
 
 6. Access the Spark Web UI at http://localhost:4040
 
+7. Read a CSV file
+   7.1. Start a ```pyspark``` session in Anaconda``` and enter the below lines each and individually:
+   ```bash
+   from pyspark.sql import SparkSession
+   import os
+   spark = SparkSession.builder.appName("demo").getOrCreate()
+   file_path = os.path.expanduser("/Users/bbaheer/Downloads/Books_rating.csv");
+   df = spark.read.csv(file_path, header=True, inferSchema=True)
+   df.printSchema()
+   df.show(5)
+   ```
 ## Spark Streaming
 1. Let's create a Spark Streaming Applincation to perform real-time sales analytics (```pStream.py```):
     ```python
