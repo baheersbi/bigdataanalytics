@@ -21,8 +21,8 @@
 
     3. Under ```System variables``` section, click the ```New``` button. in the New System Variable dialog, enter the following:
     
-        2.1. Variable name: ```PYSPARK_PYTHON```
-        2.2. Variable value: ```C:\Users\Username\anaconda3\python.exe``` (replace with your actual Anaconda3 installation path)
+        3.1. Variable name: ```PYSPARK_PYTHON```
+        3.2. Variable value: ```C:\Users\Username\anaconda3\python.exe``` (replace with your actual Anaconda3 installation path)
 
     4. Similarly, click on “```New…```” under the System variables section. In the New System Variable dialog, enter the following:
 
