@@ -1,6 +1,6 @@
 # Set Up the Spark Environment
 1. Download and install Java by visiting this [Link](https://www.java.com/en/download/)
-2. Make sure that you have ```Python``` installed in your machine.
+2. Make sure that you have ```Python``` installed in your machine. Or use Anaconda Navigator: https://docs.anaconda.com/free/navigator/install/
 
     1.1. Type Python Or py > Hit Enter If Python Is Installed it will show the version Details Otherwise It will Open Microsoft Store To Download From Microsoft Store
 3. Install ```PySpark``` using ```pip``` (Python package manager):
