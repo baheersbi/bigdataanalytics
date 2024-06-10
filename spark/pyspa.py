@@ -19,10 +19,10 @@ df = df.withColumnRenamed("review/score", "review_score") \
 # print(f"The average of scores: {avg_score}")
 
 
-# score_distribution = df.groupBy("review_score").count().orderBy(desc("count"))
-# score_distribution.show()
+score_distribution = df.groupBy("review_score").count().orderBy(desc("count"))
+score_distribution.show()
 
 
-top_books = df.groupBy("Title").count().orderBy(desc("count")).limit(10)
-print("Top 10 Most Reviewed Books:")
-top_books.show(truncate=False)
+# top_books = df.groupBy("Title").count().orderBy(desc("count")).limit(10)
+# print("Top 10 Most Reviewed Books:")
+# top_books.show(truncate=False)
