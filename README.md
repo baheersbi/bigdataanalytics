@@ -2,14 +2,23 @@
 ## Hadoop Installation
 # Easy approach:
 1. Open Docker
-2. Search for ```suhothayan/hadoop-spark-pig-hive``` image
-3. ```Pull``` the image
-4. Open a Command Prompt or Terminal
-5. Execute this Docker command:
+2. Open a Command Prompt and pull the image:
+   ```bash
+   docker pull suhothayan/hadoop-spark-pig-hive:2.9.2
+   ```
+3. 🕙 Wait until the download is finished
+4. 🚀 Execute this Docker command in the same window where you pulled the image:
    ```bash
    docker run -it --name myhadoop -p 2122:2122 -p 50070:50070 -p 50010:50010 -p 50075:50075 -p 50020:50020 -p 50090:50090 -p 8088:8088 -p 8030:8030 -p 8031:8031 -p 8032:8032 -p 8033:8033 -p 8040:8040 -p 8042:8042 -p 8080:8080 -p 8081:8081 -p 10000:10000 suhothayan/hadoop-spark-pig-hive:2.9.2 bash
-
+8. Wait for few minutes until the prompt changes to something like this:
    ```
+   * Starting OpenBSD Secure Shell server sshd                                                                    
+   Waiting for hdfs to exit from safemode
+   Safe mode is OFF
+   Started
+   root@b5dc483f5c73:/# 
+   ```
+   
    > **Port Number Explained**
    >
    > 2122:2122 \   # SSH
@@ -50,29 +59,29 @@
    > docker exec -it myhadoop bash
    > ```
    To access Hadoop Web Interface, Open a browser window/tab and navigate to ```http://localhost:50070```, and Spark at ```http://localhost:8080``` 
-6. Update Ubuntu: ``` apt update ```
-7. Install ``` nano ``` editor: ``` apt install nano ```
-8. . Navigate to the ```home``` directory: ```cd home``` and press Enter
-9. Create a new directory: ```mkdir datasrc```
-10. Download this [Amazon Books Reviews](https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews/data) dataset to your computer.
-11. Unzip the extracted folder
-12. Open a new Command Prompot or Terminal window and copy the downloaded file to the container. The container ID looks like ```3d6c17a05e33``` extracted from ```root@3d6c17a05e33:~#``` prompt.
+9. Update Ubuntu: ``` apt update ```
+10. Install ``` nano ``` editor: ``` apt install nano ```
+11. . Navigate to the ```home``` directory: ```cd home``` and press Enter
+12. Create a new directory: ```mkdir datasrc```
+13. Download this [Amazon Books Reviews](https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews/data) dataset to your computer.
+14. Unzip the extracted folder
+15. Open a new Command Prompot or Terminal window and copy the downloaded file to the container. The container ID looks like ```3d6c17a05e33``` extracted from ```root@3d6c17a05e33:~#``` prompt.
       ```bash
       docker cp Books_rating.csv 3d6c17a05e33:/home/datasrc 
       ```
-13. Create a directory in HDFS:
+16. Create a directory in HDFS:
       ```bash
       hadoop fs -mkdir -p /home/datasrc/bigDataTask
       ```
-14. Upload the file to HDFS:
+17. Upload the file to HDFS:
       ```bash
       hadoop fs -put Books_rating.csv /home/datasrc/bigDataTask
       ```
-15. Make sure the file is uploaded
+18. Make sure the file is uploaded
       ```bash
       hadoop fs -ls /home/datasrc/bigDataTask
       ```
-16. See the number of blocks
+19. See the number of blocks
       ```bash
       hadoop fsck /home/datasrc/bigDataTask
       ```
