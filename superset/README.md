@@ -44,10 +44,14 @@ This quickstart guide will assist you in setting up your local machine in just t
         price DECIMAL(10, 2)
     );
     ```
-## Install Kafka Python client
-    ```bash
-    pip install kafka-python
-    ```
+## Install Kafka Python client:
+```bash
+pip install kafka-python
+```
+### Install MySQL Python client
+```bash
+pip install mysql-connector-python
+```
 ## Produce some transactions:
 
 The ```producer.py``` script is used to produce some dummy data and store it in a Kafka topic. Download ```producer.py``` and run it ```python producer.py```.
