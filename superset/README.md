@@ -59,6 +59,17 @@ The ```producer.py``` script is used to produce some dummy data and store it in 
 ## Consume transactions
 The ```consumer.py``` script will consumer the ctypto transactions fromt the Kafka topic and store them in MySQL. 
 
+## Connect Superset to MySQL
+In the Superset UI, when adding a new database connection, use the internal Docker network hostname ```Crypto``` and the port ```3306``` (the internal port within the Docker network). 
 
+Connection Details: 
+```bash
+	-	HOST: Crypto
+	-	PORT: 3306
+	-	DATABASE NAME: crypto
+	-	USERNAME: root
+	-	PASSWORD: 123456
+	-	DISPLAY NAME: MySQL
+```
 
 
