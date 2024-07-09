@@ -1,4 +1,5 @@
 # Big Data Analytics
+Zoom: https://us02web.zoom.us/j/5458817051?pwd=UUdYZndXTlUvUHBZZkN4N0ZuUjJTUT09
 ## Hadoop Installation
 # Easy approach:
 1. Open Docker
