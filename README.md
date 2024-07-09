@@ -81,6 +81,10 @@
       ```bash
       hadoop fs -ls /home/datasrc/bigDataTask
       ```
+19. Checking the Size of the File
+      ```bash
+      hdfs dfs -du -h /home/datasrc/bigDataTask/Books_rating.csv
+      ```
 19. See the number of blocks
       ```bash
       hadoop fsck /home/datasrc/bigDataTask
