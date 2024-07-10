@@ -59,7 +59,7 @@
       > ```bash
       > docker exec -it myhadoop bash
       > ```
-   To access Hadoop Web Interface, Open a browser window/tab and navigate to ```[http://localhost:50070](http://localhost:50070)```, and Spark at ```[http://localhost:8080](http://localhost:8080)``` 
+   To access Hadoop Web Interface, Open a browser window/tab and navigate to [http://localhost:50070](http://localhost:50070), and Spark at [http://localhost:8080](http://localhost:8080)
 9. Update Ubuntu: ``` apt update ```
 10. Install ``` nano ``` editor: ``` apt install nano ```
 11. . Navigate to the ```home``` directory: ```cd home``` and press Enter
