@@ -1,10 +1,11 @@
 ## Hadoop Installation
-# Easy approach:
-1. Open Docker
+1. Open Docker and make sure the Docker Engine is running
 2. Open a Command Prompt and pull the image:
    ```bash
    docker pull suhothayan/hadoop-spark-pig-hive:2.9.2
    ```
+   > If the download freezes at any point, cancel it by pressing Ctrl + C, switch your network, and try again.
+
 3. 🕙 Wait until the download is finished
 4. 🚀 Execute this Docker command in the same window where you pulled the image:
    ```bash
