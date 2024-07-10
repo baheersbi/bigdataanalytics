@@ -198,6 +198,16 @@
 5. List the output directory: ```hdfs dfs -ls /home/datasrc/bigDataTask/output```
 6. Read the output file: ```hdfs dfs -cat /home/datasrc/bigDataTask/output/part-r-00000```
 
+<!--
+## Less Important Section
+
+This is a section that contains information that is not crucial. You can keep it here for reference, but it won't be visible in the rendered README file on GitHub.
+
+- Additional tool 1
+- Additional tool 2
+- Additional tool 3
+-->
+
 
 # A detailed approach 
 > The objective of this approach is to teach students some basic Linux commands, as well as Hadoop installation. 
