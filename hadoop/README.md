@@ -11,11 +11,15 @@
    ```bash
    docker run -it --name myhadoop -p 2122:2122 -p 50070:50070 -p 50010:50010 -p 50075:50075 -p 50020:50020 -p 50090:50090 -p 8088:8088 -p 8030:8030 -p 8031:8031 -p 8032:8032 -p 8033:8033 -p 8040:8040 -p 8042:8042 -p 8080:8080 -p 8081:8081 -p 10000:10000 suhothayan/hadoop-spark-pig-hive:2.9.2 bash
    ```
-   > **Troubleshooting
+   > **Troubleshooting**
+   >
    > Error: ```...Ports are not available``` on Windows
-   > Fix: Open a Terminal (must be run as administrator) and run ```net stop winnat``` command
+   >
+   > Fix: Open a Terminal (must be run as administrator) and execute ```net stop winnat``` command
+   > 
    > Error: The container name "/myhadoop" is already in use
-   > Fix: Remove the container using Docker Desktop and re-run your container.
+   >
+   > Fix: Remove the container using Docker Desktop and re-run the ```docker run...``` command.
 8. Wait for few minutes until the prompt changes to something like this:
    ```
    * Starting OpenBSD Secure Shell server sshd                                                                    
@@ -67,6 +71,30 @@
    To access Hadoop Web Interface, Open a browser window/tab and navigate to [http://localhost:50070](http://localhost:50070), and Spark at [http://localhost:8080](http://localhost:8080)
 9. Update Ubuntu: ``` apt update ```
 10. Install ``` nano ``` editor: ``` apt install nano ```
+11. Verify Hadoop Installation ```ls /usr/local/hadoop```
+12. Set Up Environment Variables:
+    ```bash
+    nano ~/.bashrc
+    ```
+    Add the following lines:
+    ```bash
+    export HADOOP_HOME=/usr/local/hadoop
+    export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+    export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+    ```
+    Source the ```~/.bashrc``` file:
+    ```bash
+    source ~/.bashrc
+    ```
+    > **Note:**
+    > If, for any reason, Hadoop stops working, use the following commands to restart it:
+    >
+    > ```bash
+    > stop-dfs.sh
+    > stop-yarn.sh
+    > start-dfs.sh
+    > start-yarn.sh
+    > ```
 11. . Navigate to the ```home``` directory: ```cd home``` and press Enter
 12. Create a new directory: ```mkdir datasrc```
 13. Download this [Amazon Books Reviews](https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews/data) dataset to your computer.
