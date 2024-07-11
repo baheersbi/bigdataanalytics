@@ -139,6 +139,10 @@
          ```bash
          hive
          ```
+         > If you can't switch to the ```hive >``` prompt, most likely, it's due to ```Safe mode on```, so we should turn it off:
+         > ```bash
+         > $HADOOP_HOME/bin/hdfs dfsadmin -safemode leave
+         > ```
    3. Show the current Databases ```show databases``` and it will return an error. Leave the ```hive``` prompt by typing ```exit;```
    4. Remove the ```metastore_db``` folder: ```rm -rf metastore_db```
    5. Initialize the database schema for Apache Hive
