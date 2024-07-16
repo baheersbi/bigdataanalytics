@@ -1,3 +1,49 @@
+# Using the current setup
+If you are the Hadoop-Spark-Hive-Pig container from the previous session, then you can easily switch to ```spark``` using ```pyspark``` command. 
+
+```bash
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col
+
+# Initialize a Spark session
+spark = SparkSession.builder \
+    .appName("Books Rating Analysis") \
+    .config("spark.sql.warehouse.dir", "file:///tmp/spark-warehouse") \
+    .getOrCreate()
+
+# Load the CSV file from HDFS
+hdfs_path = "hdfs:///home/datasrc/bigDataTask/Books_rating.csv"
+books_df = spark.read.csv(hdfs_path, header=True, inferSchema=True)
+
+# Cast the 'review/score' column to float type
+books_df = books_df.withColumn("review/score", col("review/score").cast("float"))
+
+# Show the first few rows of the DataFrame
+books_df.show()
+
+# Print the schema of the DataFrame
+books_df.printSchema()
+
+# Get basic statistics
+books_df.describe().show()
+
+# Count the number of reviews for each book
+books_df.groupBy("Title").count().show()
+
+# Calculate the average review score for each book
+books_df.groupBy("Title").avg("review/score").show()
+
+# Find the book with the highest average review score
+books_df.groupBy("Title").avg("review/score").orderBy("avg(review/score)", ascending=False).show(1)
+
+# Most frequent reviewers
+books_df.groupBy("profileName").count().orderBy("count", ascending=False).show(10)
+
+# Save the analysis result back to HDFS
+result_df = books_df.groupBy("Title").avg("review/score")
+result_df.write.csv("hdfs:///home/output/Books_rating_analysis.csv")
+```
+
 # Set Up the Spark Environment
 1. Download and install Java by visiting this [Link](https://www.java.com/en/download/)
 2. Make sure that you have ```Python``` installed in your machine. Or use Anaconda Navigator: https://docs.anaconda.com/free/navigator/install/
