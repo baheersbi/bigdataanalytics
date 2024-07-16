@@ -1,5 +1,5 @@
 # Using the current setup
-If you are the Hadoop-Spark-Hive-Pig container from the previous session, then you can easily switch to ```spark``` using ```pyspark``` command. 
+If you are still running the Hadoop-Spark-Hive-Pig container from the previous session, then you can easily switch to ```spark``` using ```pyspark``` command. 
 
 ```bash
 from pyspark.sql import SparkSession
