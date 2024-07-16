@@ -1,6 +1,6 @@
 # Big Data Analytics
 Welcome to the BigData Analytics repository! This repository is designed to provide you with hands-on experience and practical instructions for working with various Big Data tools and technologies. Here, you’ll find comprehensive guides and exercises for:
-
+Zoom: https://us02web.zoom.us/j/5458817051?pwd=UUdYZndXTlUvUHBZZkN4N0ZuUjJTUT09
 ## Subfolders
 
 Explore the following subfolders to get started with your practical work:
