@@ -43,7 +43,23 @@ books_df.groupBy("profileName").count().orderBy("count", ascending=False).show(1
 result_df = books_df.groupBy("Title").avg("review/score")
 result_df.write.csv("hdfs:///home/output/Books_rating_analysis.csv")
 ```
+### Reading the results
 
+```bash
+# Initialize a Spark session
+spark = SparkSession.builder \
+    .appName("Read Analysis Result") \
+    .getOrCreate()
+
+# Path to the directory where the results are stored
+result_path = "hdfs:///home/datascr/bigDataTask/Books_rating_analysis.csv"
+
+# Read the result into a DataFrame
+result_df = spark.read.csv(result_path, header=True, inferSchema=True)
+
+# Show the results
+result_df.show()
+```
 # Set Up the Spark Environment
 1. Download and install Java by visiting this [Link](https://www.java.com/en/download/)
 2. Make sure that you have ```Python``` installed in your machine. Or use Anaconda Navigator: https://docs.anaconda.com/free/navigator/install/
