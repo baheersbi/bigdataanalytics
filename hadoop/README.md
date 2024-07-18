@@ -20,7 +20,7 @@
    > Error: The container name "/myhadoop" is already in use
    >
    > Fix: Remove the container using Docker Desktop and re-run the ```docker run...``` command.
-5. **Mac Users:** Open a Terminal and pull the image:
+5. **Mac (Apple Chip M1, M2, M3) Users:** Open a Terminal and pull the image:
    ```bash
    docker pull bugbond/hadoop-spark-pig-hive-arm64
    ```
