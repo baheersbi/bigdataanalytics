@@ -7,7 +7,7 @@
    > ⚠️ If the download freezes at any point, cancel it by pressing ```Ctrl + C```, switch your network, and try again.
 
 3. 🕙 Wait until the download is finished
-4. 🚀 Execute this Docker command in the same window where you pulled the image:
+4. 🚀 Execute this Docker command in the same window where you have pulled the image:
    ```bash
    docker run -it --name myhadoop -p 9000:9000 -p 2122:2122 -p 50070:50070 -p 50010:50010 -p 50075:50075 -p 50020:50020 -p 50090:50090 -p 8088:8088 -p 8030:8030 -p 8031:8031 -p 8032:8032 -p 8033:8033 -p 8040:8040 -p 8042:8042 -p 8080:8080 -p 8081:8081 -p 10000:10000 suhothayan/hadoop-spark-pig-hive:2.9.2 bash
    ```
@@ -107,7 +107,7 @@
 12. Create a new directory: ```mkdir datasrc```
 13. Download this [Amazon Books Reviews](https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews/data) dataset to your computer.
 14. Unzip the extracted folder
-15. Open a new Command Prompot or Terminal window and copy the downloaded file to the container. The container ID looks like ```3d6c17a05e33``` extracted from ```root@3d6c17a05e33:~#``` prompt.
+15. Open a new Command Prompot or Terminal window and copy the downloaded file to the container. The container ID looks like e.g. ```3d6c17a05e33``` extracted from ```root@3d6c17a05e33:~#``` prompt.
       ```bash
       docker cp Books_rating.csv 3d6c17a05e33:/home/datasrc 
       ```
