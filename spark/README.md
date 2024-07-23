@@ -88,6 +88,18 @@ To reduce the verbosity of INFO log messages, follow these steps:
    ```sh
    log4j.rootCategory=WARN, console
    ```
+## Using `spark-submit`
+For running a complete application, it’s more efficient to write your Spark code in a script and submit it using spark-submit. This allows you to run your Spark job as a batch process. Here’s how to do it:
+
+1. Create a Python script, let's say in `/home/sparkscripts` and make sure that you have `sparkscript` folder inside `home` directory and you have navigated to the `sparkscripts` folder using `cd` command.
+   ```bash
+   nano analyzer.py
+   ```
+2. Paste the previous code - presented in the begining of this page into the `analyzer.py` script and Press `ctrl+x`, Enter `Y`, and then press `Enter` to save the file.
+3. Use `spark-submit` to submit it to Spark and run it as a job.
+   ```bash
+   spark-submit analyzer.py
+   ```
 
 # Set Up the Spark Environment (Optional: if you need a local setup without Docker)
 1. Download and install Java by visiting this [Link](https://www.java.com/en/download/)
