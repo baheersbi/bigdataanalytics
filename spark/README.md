@@ -83,7 +83,7 @@ To reduce the verbosity of INFO log messages, follow these steps:
    nano log4j.properties
    ```
 
-   Locate the this line ```log4j.rootCategory=INFO, console``` (or similar), Change the logging level from ```INFO``` to ```WARN```:
+   Locate this line ```log4j.rootCategory=INFO, console``` (or similar), Change the logging level from ```INFO``` to ```WARN```:
 
    ```sh
    log4j.rootCategory=WARN, console
