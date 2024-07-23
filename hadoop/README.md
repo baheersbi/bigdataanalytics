@@ -1,13 +1,13 @@
 ## Hadoop Installation
 1. Open Docker and make sure the Docker Engine is running
-2. Open a Command Prompt and pull the image:
+2. **Windows Users:** Open a Command Prompt and pull the image:
    ```bash
    docker pull suhothayan/hadoop-spark-pig-hive:2.9.2
    ```
    > ⚠️ If the download freezes at any point, cancel it by pressing ```Ctrl + C```, switch your network, and try again.
 
 3. 🕙 Wait until the download is finished
-4. 🚀 Execute this Docker command in the same window where you pulled the image:
+4. 🚀 Execute this Docker command in the same window where you have pulled the image:
    ```bash
    docker run -it --name myhadoop -p 9000:9000 -p 2122:2122 -p 50070:50070 -p 50010:50010 -p 50075:50075 -p 50020:50020 -p 50090:50090 -p 8088:8088 -p 8030:8030 -p 8031:8031 -p 8032:8032 -p 8033:8033 -p 8040:8040 -p 8042:8042 -p 8080:8080 -p 8081:8081 -p 10000:10000 suhothayan/hadoop-spark-pig-hive:2.9.2 bash
    ```
@@ -20,6 +20,14 @@
    > Error: The container name "/myhadoop" is already in use
    >
    > Fix: Remove the container using Docker Desktop and re-run the ```docker run...``` command.
+5. **Mac (Apple Chip M1, M2, M3) Users:** Open a Terminal and pull the image:
+   ```bash
+   docker pull bugbond/hadoop-spark-pig-hive-arm64
+   ```
+6. Run the services:
+   ```bash
+   docker run -it --name bigtools -p 9000:9000 -p 2122:2122 -p 50070:50070 -p 50010:50010 -p 50075:50075 -p 50020:50020 -p 50090:50090 -p 8088:8088 -p 8030:8030 -p 8031:8031 -p 8032:8032 -p 8033:8033 -p 8040:8040 -p 8042:8042 -p 8080:8080 -p 8081:8081 -p 10000:10000 bugbond/hadoop-spark-pig-hive-arm64:latest bash
+   ```
 8. Wait for few minutes until the prompt changes to something like this:
    ```
    * Starting OpenBSD Secure Shell server sshd                                                                    
@@ -99,7 +107,7 @@
 12. Create a new directory: ```mkdir datasrc```
 13. Download this [Amazon Books Reviews](https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews/data) dataset to your computer.
 14. Unzip the extracted folder
-15. Open a new Command Prompot or Terminal window and copy the downloaded file to the container. The container ID looks like ```3d6c17a05e33``` extracted from ```root@3d6c17a05e33:~#``` prompt.
+15. Open a new Command Prompot or Terminal window and copy the downloaded file to the container. The container ID looks like e.g. ```3d6c17a05e33``` extracted from ```root@3d6c17a05e33:~#``` prompt.
       ```bash
       docker cp Books_rating.csv 3d6c17a05e33:/home/datasrc 
       ```
@@ -139,6 +147,10 @@
          ```bash
          hive
          ```
+         > If you can't switch to the ```hive >``` prompt, most likely, it's due to ```Safe mode on```, so we should turn it off:
+         > ```bash
+         > $HADOOP_HOME/bin/hdfs dfsadmin -safemode leave
+         > ```
    3. Show the current Databases ```show databases``` and it will return an error. Leave the ```hive``` prompt by typing ```exit;```
    4. Remove the ```metastore_db``` folder: ```rm -rf metastore_db```
    5. Initialize the database schema for Apache Hive

@@ -1,4 +1,107 @@
-# Set Up the Spark Environment
+# Using the current setup
+If you are still running the Hadoop-Spark-Hive-Pig container from the previous session, then you can easily switch to ```spark``` using ```pyspark``` command. 
+
+```bash
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col
+
+# Initialize a Spark session
+spark = SparkSession.builder \
+    .appName("Books Rating Analysis") \
+    .config("spark.sql.warehouse.dir", "file:///tmp/spark-warehouse") \
+    .getOrCreate()
+
+# Load the CSV file from HDFS
+hdfs_path = "hdfs:///home/datasrc/bigDataTask/Books_rating.csv"
+books_df = spark.read.csv(hdfs_path, header=True, inferSchema=True)
+
+# Cast the 'review/score' column to float type
+books_df = books_df.withColumn("review/score", col("review/score").cast("float"))
+
+# Show the first few rows of the DataFrame
+books_df.show()
+
+# Print the schema of the DataFrame
+books_df.printSchema()
+
+# Get basic statistics
+books_df.describe().show()
+
+# Count the number of reviews for each book
+books_df.groupBy("Title").count().show()
+
+# Calculate the average review score for each book
+books_df.groupBy("Title").avg("review/score").show()
+
+# Find the book with the highest average review score
+books_df.groupBy("Title").avg("review/score").orderBy("avg(review/score)", ascending=False).show(1)
+
+# Most frequent reviewers
+books_df.groupBy("profileName").count().orderBy("count", ascending=False).show(10)
+
+# Save the analysis result back to HDFS
+result_df = books_df.groupBy("Title").avg("review/score")
+result_df.write.csv("hdfs:///home/output/Books_rating_analysis.csv")
+```
+### Reading the results
+
+```bash
+# Initialize a Spark session
+spark = SparkSession.builder \
+    .appName("Read Analysis Result") \
+    .getOrCreate()
+
+# Path to the directory where the results are stored
+result_path = "hdfs:///home/datascr/bigDataTask/Books_rating_analysis.csv"
+
+# Read the result into a DataFrame
+result_df = spark.read.csv(result_path, header=True, inferSchema=True)
+
+# Show the results
+result_df.show()
+```
+
+## Setting Up Logging Configuration
+
+To reduce the verbosity of INFO log messages, follow these steps:
+
+1. **Navigate to the Spark Configuration Directory**:
+
+   ```sh
+   cd /usr/local/spark/conf
+   ```
+
+   Copy the existing template to create a new log4j.properties file.
+
+   ```sh
+   cp log4j.properties.template log4j.properties
+   ```
+   
+   Open the log4j.properties file in a text editor.
+
+   ```sh
+   nano log4j.properties
+   ```
+
+   Locate this line ```log4j.rootCategory=INFO, console``` (or similar), Change the logging level from ```INFO``` to ```WARN```:
+
+   ```sh
+   log4j.rootCategory=WARN, console
+   ```
+## Using `spark-submit`
+For running a complete application, it’s more efficient to write your Spark code in a script and submit it using spark-submit. This allows you to run your Spark job as a batch process. Here’s how to do it:
+
+1. Create a Python script, let's say in `/home/sparkscripts` and make sure that you have `sparkscripts` folder inside `home` directory and you have navigated to the `sparkscripts` folder using `cd` command.
+   ```bash
+   nano analyzer.py
+   ```
+2. Paste the previous code - presented in the begining of this page into the `analyzer.py` script and Press `ctrl+x`, Enter `Y`, and then press `Enter` to save the file.
+3. Use `spark-submit` to submit it to Spark and run it as a job.
+   ```bash
+   spark-submit analyzer.py
+   ```
+
+# Set Up the Spark Environment (Optional: if you need a local setup without Docker)
 1. Download and install Java by visiting this [Link](https://www.java.com/en/download/)
 2. Make sure that you have ```Python``` installed in your machine. Or use Anaconda Navigator: https://docs.anaconda.com/free/navigator/install/
 
