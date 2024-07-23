@@ -60,7 +60,36 @@ result_df = spark.read.csv(result_path, header=True, inferSchema=True)
 # Show the results
 result_df.show()
 ```
-# Set Up the Spark Environment
+
+## Setting Up Logging Configuration
+
+To reduce the verbosity of INFO log messages, follow these steps:
+
+1. **Navigate to the Spark Configuration Directory**:
+
+   ```sh
+   cd /usr/local/spark/conf
+   ```
+
+   Copy the existing template to create a new log4j.properties file.
+
+   ```sh
+   cp log4j.properties.template log4j.properties
+   ```
+   
+   Open the log4j.properties file in a text editor.
+
+   ```sh
+   nano log4j.properties
+   ```
+
+   Locate the this line ```log4j.rootCategory=INFO, console``` (or similar), Change the logging level from ```INFO``` to ```WARN```:
+
+   ```sh
+   log4j.rootCategory=WARN, console
+   ```
+
+# Set Up the Spark Environment (Optional: if you need a local setup without Docker)
 1. Download and install Java by visiting this [Link](https://www.java.com/en/download/)
 2. Make sure that you have ```Python``` installed in your machine. Or use Anaconda Navigator: https://docs.anaconda.com/free/navigator/install/
 
