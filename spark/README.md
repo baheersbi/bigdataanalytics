@@ -91,7 +91,7 @@ To reduce the verbosity of INFO log messages, follow these steps:
 ## Using `spark-submit`
 For running a complete application, it’s more efficient to write your Spark code in a script and submit it using spark-submit. This allows you to run your Spark job as a batch process. Here’s how to do it:
 
-1. Create a Python script, let's say in `/home/sparkscripts` and make sure that you have `sparkscript` folder inside `home` directory and you have navigated to the `sparkscripts` folder using `cd` command.
+1. Create a Python script, let's say in `/home/sparkscripts` and make sure that you have `sparkscripts` folder inside `home` directory and you have navigated to the `sparkscripts` folder using `cd` command.
    ```bash
    nano analyzer.py
    ```
