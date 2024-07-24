@@ -213,6 +213,11 @@ For running a complete application, it’s more efficient to write your Spark co
     python pStream.py
     ```
 3. . Open a new Command Prompt/PowerShell to start a simple data server:
+   Windows Users:
+   ```bash
+   tnc -p 9999
+   ```
+   Mac/Linux Users:
     ```bash
     nc -lk 9999
     ```
