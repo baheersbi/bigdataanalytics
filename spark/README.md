@@ -19,29 +19,42 @@ books_df = spark.read.csv(hdfs_path, header=True, inferSchema=True)
 books_df = books_df.withColumn("review/score", col("review/score").cast("float"))
 
 # Show the first few rows of the DataFrame
-books_df.show()
+#books_df.show()
+
+# Select specific columns
+#books_df.select("Id", "Title", "Price", "review/score").show()
+
+# Select specific columns and filter where Price is null
+#books_df.select("Id", "Title", "Price", "review/score").where(books_df["Price"].isNull()).show()
+
+# Select specific columns and filter where Price is null
+books_df.select("Id", "Title", "Price", "review/score").where(books_df["Price"].isNotNull()).show()
+
+
+# Select specific columns and filter where Price is null and review/score is above 3.0
+#books_df.select("Id", "Title", "Price", "review/score").where(books_df["Price"].isNull() & (books_df["review/score"] > 3.0)).show()
 
 # Print the schema of the DataFrame
-books_df.printSchema()
+#books_df.printSchema()
 
 # Get basic statistics
-books_df.describe().show()
+#books_df.describe().show()
 
 # Count the number of reviews for each book
-books_df.groupBy("Title").count().show()
+#books_df.groupBy("Title").count().show()
 
 # Calculate the average review score for each book
-books_df.groupBy("Title").avg("review/score").show()
+#books_df.groupBy("Title").avg("review/score").show()
 
 # Find the book with the highest average review score
-books_df.groupBy("Title").avg("review/score").orderBy("avg(review/score)", ascending=False).show(1)
+#books_df.groupBy("Title").avg("review/score").orderBy("avg(review/score)", ascending=False).show(1)
 
 # Most frequent reviewers
-books_df.groupBy("profileName").count().orderBy("count", ascending=False).show(10)
+#books_df.groupBy("profileName").count().orderBy("count", ascending=False).show(10)
 
 # Save the analysis result back to HDFS
-result_df = books_df.groupBy("Title").avg("review/score")
-result_df.write.csv("hdfs:///home/output/Books_rating_analysis.csv")
+#result_df = books_df.groupBy("Title").avg("review/score")
+#result_df.write.csv("hdfs:///home/output/Books_rating_analysis.csv")
 ```
 ### Reading the results
 
