@@ -74,6 +74,19 @@ result_df = spark.read.csv(result_path, header=True, inferSchema=True)
 result_df.show()
 ```
 
+## Read Parquet File in Spark:
+```bash
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \
+    .appName("ParquetConverter") \
+    .getOrCreate()
+
+df = spark.read.parquet("/path/to/parquet/file")
+df.show(1000)
+spark.stop()
+```
+
 ## Setting Up Logging Configuration
 
 To reduce the verbosity of INFO log messages, follow these steps:
