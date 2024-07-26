@@ -126,6 +126,37 @@ For running a complete application, it’s more efficient to write your Spark co
    ```bash
    spark-submit analyzer.py
    ```
+## Multi-Source Data Streaming with PySpark
+This section describes how to configure your PySpark Streaming application to receive and process data from multiple sources within a 192.168.x.x network. By setting up multiple socket streams and combining them using Spark's union functionality, you can handle data from several machines running `nc -lk 9999`.
+```bash
+from pyspark import SparkConf, SparkContext
+from pyspark.streaming import StreamingContext
+
+# Stop any existing SparkContext
+try:
+    sc.stop()
+except:
+    pass
+
+conf = SparkConf().setAppName("SocketTest").set("spark.driver.memory", "2g")
+sc = SparkContext(conf=conf)
+ssc = StreamingContext(sc, 2)
+
+# List of IP addresses of the sender machines in the 192.168.x.x network
+sender_ips = ["192.168.23.148", "192.168.22.118", "192.168.22.119"]
+
+# Create a DStream for each sender
+streams = [ssc.socketTextStream(ip, 9999) for ip in sender_ips]
+
+# Union all the streams to a single DStream
+lines = ssc.union(*streams)
+
+# Print each line received from the socket
+lines.pprint()
+
+ssc.start()
+ssc.awaitTermination()
+```
 
 # Set Up the Spark Environment (Optional: if you need a local setup without Docker)
 1. Download and install Java by visiting this [Link](https://www.java.com/en/download/)
