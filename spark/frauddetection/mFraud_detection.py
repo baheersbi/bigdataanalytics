@@ -3,7 +3,7 @@ from pyspark.streaming import StreamingContext
 from pyspark.sql import SQLContext, Row
 from pyspark.sql.types import StructType, StructField, StringType, FloatType
 
-# Define the transaction schema
+
 schema = StructType([
     StructField("timestamp", StringType(), True),
     StructField("sender_account", StringType(), True),
@@ -11,10 +11,10 @@ schema = StructType([
     StructField("amount", FloatType(), True)
 ])
 
-# Threshold for flagging transactions as potential fraud
+
 FRAUD_THRESHOLD = 3000.00
 
-# Initialize Spark context
+
 conf = SparkConf().setAppName("FraudDetectionApp")
 sc = SparkContext(conf=conf)
 ssc = StreamingContext(sc, 5)  # 5-second batch interval
@@ -41,8 +41,12 @@ def parse_line(line):
         amount=float(parts[3])
     )
 
-lines = ssc.socketTextStream("192.168.23.148", 9999)
-transactions = lines.map(parse_line)
+data_sources = [("localhost", 9999), ("192.168.23.148", 9999), ("192.168.1.3", 9999)]
+
+streams = [ssc.socketTextStream(ip, port) for ip, port in data_sources]
+unioned_stream = ssc.union(*streams)
+
+transactions = unioned_stream.map(parse_line)
 transactions.foreachRDD(process_rdd)
 
 ssc.start()

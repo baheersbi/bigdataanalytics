@@ -1,0 +1,37 @@
+{
+    "schemaName": "fraudDetection",
+    "dimensionFieldSpecs": [
+      {
+        "name": "transactionId",
+        "dataType": "STRING"
+      },
+      {
+        "name": "userId",
+        "dataType": "STRING"
+      },
+      {
+        "name": "transactionAmount",
+        "dataType": "DOUBLE"
+      },
+      {
+        "name": "merchantId",
+        "dataType": "STRING"
+      },
+      {
+        "name": "transactionType",
+        "dataType": "STRING"
+      },
+      {
+        "name": "isFraud",
+        "dataType": "BOOLEAN"
+      }
+    ],
+    "dateTimeFieldSpecs": [
+      {
+        "name": "transactionTime",
+        "dataType": "LONG",
+        "format": "1:MILLISECONDS:EPOCH",
+        "granularity": "1:MILLISECONDS"
+      }
+    ]
+  }

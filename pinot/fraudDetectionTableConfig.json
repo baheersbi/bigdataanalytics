@@ -1,0 +1,41 @@
+{
+    "tableName": "fraudDetection",
+    "tableType": "REALTIME",
+    "tenants": {
+      "broker": "DefaultTenant",
+      "server": "DefaultTenant"
+    },
+    "segmentsConfig": {
+      "schemaName": "fraudDetection",
+      "timeColumnName": "transactionTime",
+      "replication": "1",
+      "replicasPerPartition": "1"
+    },
+    "tableIndexConfig": {
+      "loadMode": "MMAP",
+      "invertedIndexColumns": [],
+      "createInvertedIndexDuringSegmentGeneration": false,
+      "rangeIndexColumns": [],
+      "sortedColumn": [],
+      "bloomFilterConfigs": {},
+      "noDictionaryColumns": []
+    },
+    "ingestionConfig": {
+      "streamIngestionConfig": {
+        "streamConfigMaps": [
+          {
+            "streamType": "kafka",
+            "stream.kafka.topic.name": "fraud-detection",
+            "stream.kafka.broker.list": "safe-catfish-11663-eu2-kafka.upstash.io:9092",
+            "stream.kafka.consumer.factory.class.name": "org.apache.pinot.plugin.stream.kafka20.KafkaConsumerFactory",
+            "stream.kafka.decoder.class.name": "org.apache.pinot.plugin.stream.kafka.KafkaJSONMessageDecoder",
+            "stream.kafka.decoder.prop.auto.offset.reset": "smallest",
+            "security.protocol": "SASL_SSL",
+            "sasl.jaas.config": "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"c2FmZS1jYXRmaXNoLTExNjYzJDplu7kxAS13b_08aJSiVJF4ZPgY50XQcF0J5wk\" password=\"MGVjNDNjYWItMGQ3YS00YTNlLTkwN2UtODMzNTZkNzUxNDcx\";",
+            "sasl.mechanism": "SCRAM-SHA-256"
+          }
+        ]
+      }
+    },
+    "metadata": {}
+  }
