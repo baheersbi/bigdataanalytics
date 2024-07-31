@@ -276,7 +276,7 @@ ssc.awaitTermination()
    ```bash
    ncat -l 9999
    ```
-   Mac/Linux Users:
+   **Mac Users:**
     ```bash
     nc -lk 9999
     ```
