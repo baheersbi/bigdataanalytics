@@ -270,9 +270,11 @@ ssc.awaitTermination()
     python pStream.py
     ```
 3. . Open a new Command Prompt/PowerShell to start a simple data server:
-   Windows Users:
+   
+   **Windows Users:**
+   Download and install Nmap: https://nmap.org/dist/nmap-7.95-setup.exe and close all opened Command Prompt/Terminal windows. Open a new Command Prompt/Terminal Window and execute the below command. 
    ```bash
-   tnc -p 9999
+   ncat -l 9999
    ```
    Mac/Linux Users:
     ```bash
