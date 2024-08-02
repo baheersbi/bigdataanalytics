@@ -160,7 +160,7 @@ ssc.awaitTermination()
 
 # Set Up the Spark Environment Locally (Optional: if you need a local setup without Docker)
 1. Download and install Java by visiting this [Link](https://www.java.com/en/download/)
-2. Make sure that you have ```Python``` installed in your machine. Or use Anaconda Navigator: https://docs.anaconda.com/free/navigator/install/
+2. Make sure that you have ```Python``` installed in your machine. Or (Only Windows users) use Anaconda Navigator: https://docs.anaconda.com/free/navigator/install/ and try to interact with PySpark via Anaconda Prompt. 
 
     1.1. Type Python Or py > Hit Enter If Python Is Installed it will show the version Details Otherwise It will Open Microsoft Store To Download From Microsoft Store
 3. Install ```PySpark``` using ```pip``` (Python package manager):
