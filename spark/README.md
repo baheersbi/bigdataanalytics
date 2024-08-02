@@ -158,7 +158,7 @@ ssc.start()
 ssc.awaitTermination()
 ```
 
-# Set Up the Spark Environment (Optional: if you need a local setup without Docker)
+# Set Up the Spark Environment Locally (Optional: if you need a local setup without Docker)
 1. Download and install Java by visiting this [Link](https://www.java.com/en/download/)
 2. Make sure that you have ```Python``` installed in your machine. Or use Anaconda Navigator: https://docs.anaconda.com/free/navigator/install/
 
