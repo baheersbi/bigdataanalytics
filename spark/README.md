@@ -127,7 +127,7 @@ For running a complete application, it’s more efficient to write your Spark co
    spark-submit analyzer.py
    ```
 ## Multi-Source Data Streaming with PySpark
-This section describes how to configure your PySpark Streaming application to receive and process data from multiple sources within a 192.168.x.x network. By setting up multiple socket streams and combining them using Spark's union functionality, you can handle data from several machines running `nc -lk 9999`.
+This section describes how to configure your PySpark Streaming application to receive and process data from multiple sources within a 192.168.x.x network. By setting up multiple socket streams and combining them using Spark's union functionality, you can handle data from several machines running `nc -lk 9999` (Mac Users) and/or `ncat -l 9999` (Windows Users).
 ```bash
 from pyspark import SparkConf, SparkContext
 from pyspark.streaming import StreamingContext
