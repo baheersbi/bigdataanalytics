@@ -1,4 +1,11 @@
+# How to run?
+Get a copy of these script and save it locally as a Python file (`.py`). Open a Terminal (Mac Users) or Anaconda Prompt (Windows Users) and navigate to the folder (`cd *folder_name*`) where the script is located and run the script as a python script (`python *script_name*). 
+> **Note:** Mac user could try to run it with `python3`.
+
+
 ## Sampel Data
+Open a new Terminal Window and open a new channel using `nc -lk 9999` (Mac Users) or `ncat -l 9999` (Windows users) and insert the following data. 
+
 ```bash
 2024-07-23 12:34:56,12345,67890,2000.00
 2024-07-23 12:35:00,12346,67891,150.00
