@@ -1,5 +1,5 @@
 # How to run?
-Get a copy of these script and save it locally as a Python file (`.py`). Open a Terminal (Mac Users) or Anaconda Prompt (Windows Users) and navigate to the folder (`cd _folder-name_`) where the script is located and run the script as a python script (`python *script_name*). 
+Get a copy of these script and save it locally as a Python file (`.py`). Open a Terminal (Mac Users) or Anaconda Prompt (Windows Users) and navigate to the folder (`cd` *folder-name*) where the script is located and run the script as a python script (`python *script_name*). 
 > **Note:** Mac user could try to run it with `python3`.
 
 
