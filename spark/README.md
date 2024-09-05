@@ -127,7 +127,7 @@ For running a complete application, it’s more efficient to write your Spark co
    spark-submit analyzer.py
    ```
 ## Multi-Source Data Streaming with PySpark
-This section describes how to configure your PySpark Streaming application to receive and process data from multiple sources within a 192.168.x.x network. By setting up multiple socket streams and combining them using Spark's union functionality, you can handle data from several machines running `nc -lk 9999`.
+This section describes how to configure your PySpark Streaming application to receive and process data from multiple sources within a 192.168.x.x network. By setting up multiple socket streams and combining them using Spark's union functionality, you can handle data from several machines running `nc -lk 9999` (Mac Users) and/or `ncat -l 9999` (Windows Users).
 ```bash
 from pyspark import SparkConf, SparkContext
 from pyspark.streaming import StreamingContext
@@ -158,9 +158,9 @@ ssc.start()
 ssc.awaitTermination()
 ```
 
-# Set Up the Spark Environment (Optional: if you need a local setup without Docker)
+# Set Up the Spark Environment Locally (Optional: if you need a local setup without Docker)
 1. Download and install Java by visiting this [Link](https://www.java.com/en/download/)
-2. Make sure that you have ```Python``` installed in your machine. Or use Anaconda Navigator: https://docs.anaconda.com/free/navigator/install/
+2. Make sure that you have ```Python``` installed in your machine. Or (Only Windows users) use Anaconda Navigator: https://docs.anaconda.com/free/navigator/install/ and try to interact with PySpark via Anaconda Prompt. 
 
     1.1. Type Python Or py > Hit Enter If Python Is Installed it will show the version Details Otherwise It will Open Microsoft Store To Download From Microsoft Store
 3. Install ```PySpark``` using ```pip``` (Python package manager):
@@ -270,11 +270,13 @@ ssc.awaitTermination()
     python pStream.py
     ```
 3. . Open a new Command Prompt/PowerShell to start a simple data server:
-   Windows Users:
+   
+   **Windows Users:**
+   Download and install Nmap: https://nmap.org/dist/nmap-7.95-setup.exe and close all opened Command Prompt/Terminal windows. Open a new Command Prompt/Terminal Window and execute the below command. 
    ```bash
-   tnc -p 9999
+   ncat -l 9999
    ```
-   Mac/Linux Users:
+   **Mac Users:**
     ```bash
     nc -lk 9999
     ```
