@@ -11,5 +11,6 @@ while True:
         "location": "40.7128,-74.0060",
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     }
+    print(f"Sending record: {data}")
     producer.send('courier-locations', value=data)
     time.sleep(5)
