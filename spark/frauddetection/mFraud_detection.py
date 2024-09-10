@@ -41,7 +41,7 @@ def parse_line(line):
         amount=float(parts[3])
     )
 
-data_sources = [("localhost", 9999), ("192.168.23.148", 9999), ("192.168.1.3", 9999)]
+data_sources = [("localhost", 9999), ("192.168.20.162", 9999), ("192.168.20.164", 9999), ("192.168.17.150", 9999)]
 
 streams = [ssc.socketTextStream(ip, port) for ip, port in data_sources]
 unioned_stream = ssc.union(*streams)

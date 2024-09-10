@@ -138,6 +138,75 @@
 > Remove a directory in HDFS: ```hdfs dfs -rm -r /user/root/test```
 > 
 > List files/folders in HDFS: ```hdfs dfs -ls /user/root```
+## Submit MapReduce Jobs
+### Finding Highest and Lowest Review Scores
+Create a directory, for instance, ```/home/scripts``` and navigate to this directory using ```cd /home/scripts``` command. Create the Mapper ```touch mapper.py``` and Reducer ```touch reducer.py``` and change their permission:
+```bash
+chmod 777 mapper.py reducer.py
+```
+Open mapper in ```nano``` editor:
+```bash
+nano mapper.py
+```
+and add the following code:
+```bash
+#!/usr/bin/env python
+import sys
+import csv
+for line in sys.stdin:
+    try:
+        reader = csv.reader([line])
+        for row in reader:
+            review_score = row[6]
+
+            if review_score:
+                print('{0}'.format(review_score))
+    except Exception as e:
+        sys.stderr.write("Error processing line: {0} - {1}\n".format(line, str(e)))
+        continue
+```
+Press ```ctrl+x```, type ```Y``` and press enter to close ```nano```.
+And open ```reducer.py``` using ```nano```:
+```bash
+nano reducer.py
+```
+and add the below code:
+```bash
+#!/usr/bin/env python
+import sys
+highest_score = float('-inf')
+lowest_score = float('inf')
+for line in sys.stdin:
+    line = line.strip()
+    try:
+        score = float(line)
+        if score > highest_score:
+            highest_score = score
+        if score < lowest_score:
+            lowest_score = score
+    except ValueError:
+
+        sys.stderr.write("Skipping invalid score: {0}\n".format(line))
+        continue
+
+print('Highest Score: {0}'.format(highest_score))
+print('Lowest Score: {0}'.format(lowest_score))
+```
+Press ```ctrl+x```, type ```Y``` and press enter to close ```nano```.
+
+### Submit the MapReduce Job to YARN
+```bash
+hadoop jar /usr/local/hadoop-2.9.2/share/hadoop/tools/lib/hadoop-streaming-2.9.2.jar \
+    -D mapreduce.job.name="FindHighestAndLowestReviewScores" \
+    -input /home/datasrc/bigDataTask/Books_rating.csv \
+    -output /home/dataout \
+    -mapper /home/scripts/mapper.py \
+    -reducer /home/scripts/reducer.py \
+```
+### View the Results
+```bash
+hadoop fs -cat /home/dataout/part-00000
+```
 ## Load data from HDFS to Hive
    1. Print the column names from the ```Book_rating.csv```
          ```bash

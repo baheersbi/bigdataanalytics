@@ -12,7 +12,7 @@ sc = SparkContext(conf=conf)
 ssc = StreamingContext(sc, 2)
 
 # List of IP addresses of the sender machines in the 192.168.x.x network
-sender_ips = ["192.168.23.148"]
+sender_ips = ["192.168.23.148", "192.168.21.18", "192.168.20.162", "192.168.22.119"]
 
 # Create a DStream for each sender
 streams = [ssc.socketTextStream(ip, 9999) for ip in sender_ips]

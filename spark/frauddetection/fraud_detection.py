@@ -3,6 +3,12 @@ from pyspark.streaming import StreamingContext
 from pyspark.sql import SQLContext, Row
 from pyspark.sql.types import StructType, StructField, StringType, FloatType
 
+
+try:
+    sc.stop()
+except:
+    pass
+
 # Define the transaction schema
 schema = StructType([
     StructField("timestamp", StringType(), True),
@@ -17,7 +23,7 @@ FRAUD_THRESHOLD = 3000.00
 # Initialize Spark context
 conf = SparkConf().setAppName("FraudDetectionApp")
 sc = SparkContext(conf=conf)
-ssc = StreamingContext(sc, 5)  # 5-second batch interval
+ssc = StreamingContext(sc, 2)  # 5-second batch interval
 sqlContext = SQLContext(sc)
 
 def process_rdd(time, rdd):
@@ -41,7 +47,7 @@ def parse_line(line):
         amount=float(parts[3])
     )
 
-lines = ssc.socketTextStream("192.168.23.148", 9999)
+lines = ssc.socketTextStream("127.0.0.1", 9999)
 transactions = lines.map(parse_line)
 transactions.foreachRDD(process_rdd)
 
