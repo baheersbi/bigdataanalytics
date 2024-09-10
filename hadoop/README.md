@@ -232,25 +232,25 @@ yarn application -status <application-id>
 yarn application -list -appStatus
 ```
 ## Load data from HDFS to Hive
-   1. Print the column names from the ```Book_rating.csv```
-         ```bash
-         hdfs dfs -cat /home/datasrc/bigDataTask/Books_rating.csv | head -n 1
-         ```
-   2. Switch to ```hive```
-         ```bash
-         hive
-         ```
-         > [!TIP]
-         > If you can't switch to the ```hive >``` prompt, most likely, it's due to ```Safe mode on```, so we should turn it off:
-         > ```bash
-         > $HADOOP_HOME/bin/hdfs dfsadmin -safemode leave
-         > ```
-   3. Show the current Databases ```show databases``` and it will return an error. Leave the ```hive``` prompt by typing ```exit;```
-   4. Remove the ```metastore_db``` folder: ```rm -rf metastore_db```
-   5. Initialize the database schema for Apache Hive
-         ```bash
-         schematool -dbType derby -initSchema
-         ```
+1. Print the column names from the ```Book_rating.csv```
+```bash
+hdfs dfs -cat /home/datasrc/bigDataTask/Books_rating.csv | head -n 1
+```
+2. Switch to ```hive```
+```bash
+hive
+```
+> [!TIP]
+> If you can't switch to the ```hive >``` prompt, most likely, it's due to ```Safe mode on```, so we should turn it off:
+> ```bash
+> $HADOOP_HOME/bin/hdfs dfsadmin -safemode leave
+> ```
+3. Show the current Databases ```show databases``` and it will return an error. Leave the ```hive``` prompt by typing ```exit;```
+4. Remove the ```metastore_db``` folder: ```rm -rf metastore_db```
+5. Initialize the database schema for Apache Hive
+```bash
+schematool -dbType derby -initSchema
+```
    6. Switch back to ```hive```
    7. List databases and it won't return any error: ```show databases;```
    8. Create a new database ```create database amazonDB;```
