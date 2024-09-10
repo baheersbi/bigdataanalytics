@@ -240,6 +240,7 @@ yarn application -list -appStatus
          ```bash
          hive
          ```
+         > [!TIP]
          > If you can't switch to the ```hive >``` prompt, most likely, it's due to ```Safe mode on```, so we should turn it off:
          > ```bash
          > $HADOOP_HOME/bin/hdfs dfsadmin -safemode leave
