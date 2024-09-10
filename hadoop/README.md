@@ -207,7 +207,7 @@ hadoop jar /usr/local/hadoop-2.9.2/share/hadoop/tools/lib/hadoop-streaming-2.9.2
 ```bash
 hadoop fs -cat /home/dataout/part-00000
 ```
-> [!Steps to Troubleshoot]
+> [!IMPORTANT]
 > We highly recommend to test your scripts ```mapper.py``` and ```reducer.py``` locally before you submit it to the YARN, and ensure that it works as expected.
 > ```bash
 > cat /home/datasrc/bigDataTask/Books_rating.csv | python /home/scripts/mapper.py
