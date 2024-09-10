@@ -207,6 +207,8 @@ hadoop jar /usr/local/hadoop-2.9.2/share/hadoop/tools/lib/hadoop-streaming-2.9.2
 ```bash
 hadoop fs -cat /home/dataout/part-00000
 ```
+> [!WARNING]
+> Critical content demanding immediate user attention due to potential risks.
 ### Steps to Troubleshoot
 We highly recommend to test your scripts ```mapper.py``` and ```reducer.py``` locally before you submit it to the YARN, and ensure that it works as expected.
 ```bash
