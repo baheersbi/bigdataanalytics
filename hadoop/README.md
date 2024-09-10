@@ -207,6 +207,19 @@ hadoop jar /usr/local/hadoop-2.9.2/share/hadoop/tools/lib/hadoop-streaming-2.9.2
 ```bash
 hadoop fs -cat /home/dataout/part-00000
 ```
+### Track Specific Job Details at YARN
+Open your browser and navigate to the ```http://localhost:8088``` URL. Once you're on the YARN ResourceManager web UI, you will see several sections:
+ - **Running Applications**: This section shows jobs that are currently running.
+ - **Finished Applications**: This section lists jobs that have completed successfully.
+ - **Failed Applications**: This section lists jobs that have failed.
+ - **Killed Applications**: This section shows jobs that have been manually killed.
+
+You can click on the application ID or job name to view detailed information about a specific job. Or you can use the following commands to list or check job status:
+```bash
+yarn application -list
+yarn application -status <application-id>
+yarn application -list -appStatus
+```
 ## Load data from HDFS to Hive
    1. Print the column names from the ```Book_rating.csv```
          ```bash
