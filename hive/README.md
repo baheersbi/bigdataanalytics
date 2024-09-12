@@ -1,6 +1,6 @@
 # Apache Hive
 This section continues our exploration of Apache Hadoop configuration and usage, now shifting to Apache Hive. We’ll cover Hive’s setup, configuration, demonstrating how it simplifies querying large datasets in Hadoop. Additionally, we’ll show you how to access and use Hive within IntelliJ IDEA, streamlining your development workflow and running Hive queries directly from the IDE.
-> [!NOTE]
+> [!IMPORTANT]
 > Ensure the Docker container is running and the necessary ports are exposed. See https://github.com/baheersbi/bigdataanalytics/tree/main/hadoop
 
 1. Log into the running Docker container
