@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-233.15325.26">
+    <data-source name="Hive Metastore" uuid="d5c95849-d667-4a02-a3d1-3760d4c6e687">
+      <database-info product="Zeppelin Spark SQL" version="0.0.0" jdbc-version="4.2" driver-name="Zeppelin Spark JDBC Driver" driver-version="0.2.0" dbms="SPARK" exact-version="0.0" exact-driver-version="0.1">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+        <jdbc-catalog-is-schema>true</jdbc-catalog-is-schema>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <auth-provider>no-auth</auth-provider>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="database" negative="1">
+            <node kind="schema" negative="1" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+  </component>
+</project>

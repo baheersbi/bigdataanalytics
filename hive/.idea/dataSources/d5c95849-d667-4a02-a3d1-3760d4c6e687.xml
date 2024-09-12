@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="Hive Metastore">
+  <database-model serializer="dbm" dbms="SPARK" family-id="SPARK" format-version="4.51">
+    <root id="1">
+      <ServerVersion>0.0</ServerVersion>
+    </root>
+    <database id="2" parent="1"/>
+    <schema id="3" parent="2" name="amazon">
+      <LastIntrospectionLocalTimestamp>2024-09-12.11:26:57</LastIntrospectionLocalTimestamp>
+    </schema>
+    <schema id="4" parent="2" name="default">
+      <Current>1</Current>
+      <LastIntrospectionLocalTimestamp>2024-09-12.11:26:57</LastIntrospectionLocalTimestamp>
+    </schema>
+  </database-model>
+</dataSource>
