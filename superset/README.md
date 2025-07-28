@@ -9,11 +9,15 @@ This quickstart guide will assist you in setting up your local machine in just t
     ```bash
     cd superset
     ```
-3. Fire up Superset using Docker Compose
+3. Set the repo to the state associated with the latest official version
+   ```bash
+   $ git checkout tags/5.0.0
+   ```
+4. Fire up Superset using Docker Compose
     ```bash
-    docker compose -f docker-compose-image-tag.yml up -d
+    docker compose -f docker-compose-image-tag.yml up
     ```
-4. Login to Superset
+5. Login to Superset
 
     * Next, go to http://localhost:8088 and log in using the default account that was created.
 
