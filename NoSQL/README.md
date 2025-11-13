@@ -91,7 +91,7 @@
    ```
 11. Use the ```iot_data``` Keyspace:
     ```bash
-    USE iot_data
+    USE iot_data;
     ```
 12. Create a table
    ```sql
